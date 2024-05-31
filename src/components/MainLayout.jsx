@@ -31,6 +31,7 @@ function MainLayout() {
             bottom: "0",
             width: "100%",
             height: "50px",
+            boxShadow: "0px -2px 5px 0px #ccc",
           }}
         >
           <FooterMenu />

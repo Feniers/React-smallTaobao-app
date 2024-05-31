@@ -1,0 +1,82 @@
+.top {
+    display: flex;
+    background-color: #CB573C;
+    height: 40%;
+    padding: 0;
+    flex-direction: column;
+
+    position: relative;
+
+}
+
+.Header {
+    display: flex;
+    justify-content: space-around;
+    height: 52px;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    margin: 0;
+    padding: 0;
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: #CB573C;
+
+}
+
+.SearchBox {
+    width: 70%;
+
+}
+
+input {
+    width: 100%;
+    height: 35px;
+    border-radius: 20px;
+    border: none;
+    background-color: #fcfcfc8e;
+    text-align: center;
+    font: 14px;
+}
+
+.Carousel_box {
+    margin-top: 60px;
+    padding: 0 15px;
+}
+
+.mid {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+
+    height: 100px;
+    width: 100%;
+}
+
+.mid_box_item {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: large;
+    margin: 0;
+    padding: 0;
+}
+
+/* .mid_box_item 的最邻近子元素 */
+/* .mid_box_item>span {
+    background-color: aquamarine;
+    border-radius: 50%;
+    width: 70%;
+    height: 70%;
+
+} */

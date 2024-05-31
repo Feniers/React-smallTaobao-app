@@ -12,7 +12,7 @@ const FooterMenu = () => {
   return (
     <Menu
       mode="horizontal"
-      theme="dark"
+      theme="light"
       defaultSelectedKeys={["home"]}
       style={{
         height: "50px",
