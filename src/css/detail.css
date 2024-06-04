@@ -1,0 +1,9 @@
+.right_box_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 10px; /* 调整这个值来改变元素之间的间隔 */
+  }
+  .right_box_item > div {
+    margin-left: 5px; /* 调整这个值来改变图标和文字之间的间隔 */
+  }
