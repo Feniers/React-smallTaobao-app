@@ -31,7 +31,7 @@ const ProductDetail = () => {
   };
 
   const purchase = () => {
-    window.location.href = "/CreateOrder";
+    navigate("/OrderDetail");
     console.log("purchase");
   };
 
@@ -173,14 +173,14 @@ const ProductDetail = () => {
       >
         <div
           className="right_box_item"
-          onClick={() => (window.location.href = "/home")}
+          onClick={navigate("/home")}
         >
           <HomeOutlined />
           <div>首页</div>
         </div>
         <div
           className="right_box_item"
-          onClick={() => (window.location.href = "/cart")}
+          onClick={navigate("/Cart")}
         >
           <ShoppingCartOutlined />
           <div>购物车</div>
