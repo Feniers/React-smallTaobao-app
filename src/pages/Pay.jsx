@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LeftOutlined} from "@ant-design/icons";
 import { Button, Card, Radio } from "antd";
 
-function Pay() {
+const Pay = () => {
   const [value, setValue] = useState(1);
 
   return (

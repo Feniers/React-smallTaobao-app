@@ -7,3 +7,12 @@
   .right_box_item > div {
     margin-left: 5px; /* 调整这个值来改变图标和文字之间的间隔 */
   }
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  top: 0;
+  position: fixed;
+  border-bottom: 1px solid #ccc;
+}

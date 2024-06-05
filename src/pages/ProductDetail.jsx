@@ -1,6 +1,12 @@
 import React from "react";
-import { Carousel, Button } from "antd";
-import { LeftOutlined,HomeOutlined,ShoppingCartOutlined,HeartTwoTone } from "@ant-design/icons";
+import { Carousel, Button, Divider, Card } from "antd";
+import {
+  LeftOutlined,
+  HomeOutlined,
+  ShoppingCartOutlined,
+  HeartTwoTone,
+  RightOutlined,
+} from "@ant-design/icons";
 import "../css/detail.css";
 
 const contentStyle = {
@@ -12,15 +18,44 @@ const contentStyle = {
   borderRadius: "10px 10px 0 0",
 };
 
-function ProductDetail() {
+const ProductDetail = () => {
+  // 用来写方法和定义变量的地方
+
+  const likeHandler = () => {
+    console.log("like");
+  };
+
+  const addCart = () => {
+    console.log("addCart");
+  };
+
+  const purchase = () => {
+    window.location.href = "/CreateOrder";
+    console.log("purchase");
+  };
+
+  // 页面
   return (
-    <div>
+    // 顶部栏
+    <div
+      className="page"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        color: "#000",
+      }}
+    >
       <div
+        className="head"
         style={{
           display: "flex",
           justifyContent: "space-between",
           padding: "10px",
+          top: 0,
+          position: "fixed",
           borderBottom: "1px solid #ccc",
+          color: "#000",
         }}
       >
         <LeftOutlined
@@ -28,15 +63,17 @@ function ProductDetail() {
           style={{ cursor: "pointer" }}
         />
       </div>
+
+      {/* 轮播图 走马灯 */}
       <div>
         <Carousel
           autoplay
           arrows={true}
-          dots={false}
+          dots={true}
           style={{
             width: "100%",
-            height: "200px",
             overflow: "hidden",
+            marginTop: "30px",
           }}
         >
           <img
@@ -56,9 +93,63 @@ function ProductDetail() {
           />
         </Carousel>
       </div>
+
+      {/* 产品名 */}
       <h2>产品名</h2>
-      <h3>价格：</h3>
-      <h3>库存：</h3>
+      <Divider style={{ borderTop: "1px solid #f0f0f0", marginTop: "10px" }} />
+
+      {/* 关于销售量和浏览量的卡片 */}
+      <Card style={{ width: "90%", margin: "0 auto" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
+            销量：
+          </div>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)" }}>已售：</div>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)", marginRight: "10px" }}>
+            浏览量：
+          </div>
+        </div>
+      </Card>
+
+      {/* 产品信息参数选择 */}
+      <Card style={{ width: "90%", margin: "0 auto" }}>
+        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
+            购买类型
+          </div>
+          <div>填入</div>
+          <RightOutlined
+            // onClick={}
+            style={{ cursor: "pointer" }}
+          />
+        </div>
+        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
+            商品参数
+          </div>
+          <div>填入</div>
+          <RightOutlined
+            // onClick={}}
+            style={{ cursor: "pointer" }}
+          />
+        </div>
+        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
+            优惠卷
+          </div>
+          <div>填入</div>
+          <RightOutlined
+            // onClick={}
+            style={{ cursor: "pointer" }}
+          />
+        </div>
+        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+      </Card>
+
+      {/* 底边栏 */}
       <div
         style={{
           position: "fixed",
@@ -70,29 +161,35 @@ function ProductDetail() {
           justifyContent: "space-between",
           alignItems: "center",
           borderTop: "1px solid #ccc",
+          zIndex: 1000,
         }}
       >
-
-        <div className="right_box_item">
-          < HomeOutlined/>
+        <div
+          className="right_box_item"
+          onClick={() => (window.location.href = "/home")}
+        >
+          <HomeOutlined />
           <div>首页</div>
         </div>
-        <div className="right_box_item">
-          < ShoppingCartOutlined/>
+        <div
+          className="right_box_item"
+          onClick={() => (window.location.href = "/cart")}
+        >
+          <ShoppingCartOutlined />
           <div>购物车</div>
         </div>
-        <div className="right_box_item">
-          < HeartTwoTone/>
+        <div className="right_box_item" onClick={likeHandler}>
+          <HeartTwoTone />
           <div>收藏</div>
         </div>
-        
+
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button>加入购物车</Button>
-          <Button onClick={() => { window.location.href = '/CreateOrder'; }}>购买</Button>
+          <Button onClick={addCart}>加入购物车</Button>
+          <Button onClick={purchase}>购买</Button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ProductDetail;

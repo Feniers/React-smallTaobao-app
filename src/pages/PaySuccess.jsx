@@ -2,7 +2,7 @@ import React from "react";
 import { LeftOutlined, CheckCircleFilled } from "@ant-design/icons";
 import { Button } from "antd";
 
-function PaySuccess() {
+const PaySuccess = () => {
   return (
     <div>
       <div
