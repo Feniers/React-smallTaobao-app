@@ -14,8 +14,6 @@ const ServiceProvider = ({ children }) => {
     order: orderService,
   };
 
-  console.log("ServiceProvider", value);
-
   return (
     <ServiceContext.Provider value={value}>{children}</ServiceContext.Provider>
   );

@@ -6,10 +6,11 @@ import {
   ScanOutlined,
   ShoppingTwoTone,
 } from "@ant-design/icons";
-import React from "react";
+import React, { useContext } from "react";
 import "../css/Home.css";
-import { Carousel, Menu } from "antd";
+import { Carousel } from "antd";
 import ProductList from "../components/ProductList";
+import { ServiceContext } from "../contexts/ServiceContext";
 
 const contentStyle = {
   height: "160px",
@@ -20,53 +21,12 @@ const contentStyle = {
   borderRadius: "10px 10px 0 0",
 };
 
-const products = [
-  {
-    id: 1,
-    name: "摩托罗拉 razr 40 Mo",
-    price: "¥159.20",
-    description: "到手价",
-    image: "https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg",
-  },
-  {
-    id: 2,
-    name: "美的壁挂洗",
-    price: "¥1598.00",
-    description: "到手价",
-    image: "https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg",
-  },
-  {
-    id: 3,
-    name: "Apple Watch",
-    price: "¥8.01",
-    description: "到手价",
-    image: "https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg",
-  },
-  {
-    id: 4,
-    name: "摩托罗拉 razr 40 Mo",
-    price: "¥159.20",
-    description: "到手价",
-    image: "https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg",
-  },
-  {
-    id: 5,
-    name: "美的壁挂洗",
-    price: "¥1598.00",
-    description: "到手价",
-    image: "https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg",
-  },
-  {
-    id: 6,
-    name: "Apple Watch",
-    price: "¥8.01",
-    description: "到手价",
-    image: "https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg",
-  },
-];
-
 const HomePage = () => {
   console.log("HomePage");
+
+  const { good: goodService } = useContext(ServiceContext);
+
+  const goods = goodService.getGoodList();
 
   return (
     <div className="HomePage">
@@ -128,7 +88,7 @@ const HomePage = () => {
       </div>
 
       <div className="bottom">
-        <ProductList products={products} />
+        <ProductList products={goods} />
       </div>
     </div>
   );

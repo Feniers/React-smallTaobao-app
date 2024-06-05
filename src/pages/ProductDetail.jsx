@@ -1,7 +1,13 @@
 import React from "react";
 import { Carousel, Button } from "antd";
-import { LeftOutlined,HomeOutlined,ShoppingCartOutlined,HeartTwoTone } from "@ant-design/icons";
+import {
+  LeftOutlined,
+  HomeOutlined,
+  ShoppingCartOutlined,
+  HeartTwoTone,
+} from "@ant-design/icons";
 import "../css/detail.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const contentStyle = {
   height: "160px",
@@ -13,6 +19,12 @@ const contentStyle = {
 };
 
 function ProductDetail() {
+  const navigate = useNavigate();
+
+  const params = useParams();
+
+  console.log(params);
+
   return (
     <div>
       <div
@@ -72,23 +84,29 @@ function ProductDetail() {
           borderTop: "1px solid #ccc",
         }}
       >
-
         <div className="right_box_item">
-          < HomeOutlined/>
+          <HomeOutlined />
           <div>首页</div>
         </div>
         <div className="right_box_item">
-          < ShoppingCartOutlined/>
+          <ShoppingCartOutlined />
           <div>购物车</div>
         </div>
         <div className="right_box_item">
-          < HeartTwoTone/>
+          <HeartTwoTone />
           <div>收藏</div>
         </div>
-        
+
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button>加入购物车</Button>
-          <Button onClick={() => { window.location.href = '/CreateOrder'; }}>购买</Button>
+          <Button
+            onClick={() => {
+              // window.location.href = "/CreateOrder";
+              navigate("/CreateOrder");
+            }}
+          >
+            购买
+          </Button>
         </div>
       </div>
     </div>
