@@ -8,6 +8,7 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import "../css/detail.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const contentStyle = {
   height: "160px",
@@ -35,6 +36,12 @@ const ProductDetail = () => {
   };
 
   // 页面
+  const navigate = useNavigate();
+
+  const params = useParams();
+
+  console.log(params);
+
   return (
     // 顶部栏
     <div
