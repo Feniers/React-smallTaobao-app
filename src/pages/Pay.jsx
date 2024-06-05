@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { LeftOutlined} from "@ant-design/icons";
 import { Button, Card, Radio } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Pay = () => {
   const [value, setValue] = useState(1);
-
+  const navigate = useNavigate();
   return (
     <div>
       <div
@@ -16,7 +17,7 @@ const Pay = () => {
         }}
       >
         <LeftOutlined
-          onClick={() => window.history.back()}
+          onClick={() => navigate(-1)}
           style={{ cursor: "pointer" }}
         />
         <div>支付</div>
@@ -65,7 +66,7 @@ const Pay = () => {
               color: "#fff",
             }}
             onClick={() => {
-              window.location.href = "/paysuccess";
+              navigate("/PaySuccess");
             }}
           >
             确认支付

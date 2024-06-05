@@ -1,8 +1,10 @@
 import React from "react";
 import { LeftOutlined, CheckCircleFilled } from "@ant-design/icons";
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const PaySuccess = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div
@@ -14,7 +16,7 @@ const PaySuccess = () => {
         }}
       >
         <LeftOutlined
-          onClick={() => window.history.back()}
+          onClick={() => navigate(-1)}
           style={{ cursor: "pointer" }}
         />
         <div>支付成功</div>
@@ -41,7 +43,7 @@ const PaySuccess = () => {
               color: "#fff",
             }}
             onClick={() => {
-              window.location.href = "/orderdetail";
+              navigate("/OrderDetail");
             }}
           >
             查看订单
@@ -57,7 +59,7 @@ const PaySuccess = () => {
               color: "#000",
             }}
             onClick={() => {
-              window.location.href = "/home";
+              navigate("/home");
             }}
           >
             返回首页

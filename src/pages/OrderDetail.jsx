@@ -4,9 +4,10 @@ import {
   LeftOutlined,
   DropboxOutlined,
 } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const OrderDetail = () => {
-
+  const navigate = useNavigate();
   
   return (
     <div>
@@ -17,12 +18,14 @@ const OrderDetail = () => {
           padding: "10px",
           position: "fixed",
           top: 0,
+          width: "100%",
           borderBottom: "1px solid #ccc",
+          backgroundColor: "#fff",
         }}
       >
-        <div style={{ width: "170px" }}>
+        <div style={{ width: "100px" }}>
           <LeftOutlined
-            onClick={() => window.history.back()}
+            onClick={() => navigate("/home")}
             style={{ cursor: "pointer" }}
           />
         </div>

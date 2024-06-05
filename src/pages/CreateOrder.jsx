@@ -1,8 +1,11 @@
 import React from "react";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Button, Card, Divider } from "antd";
+import { useNavigate} from "react-router-dom";
 
 const CreateOrder = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div
@@ -17,7 +20,7 @@ const CreateOrder = () => {
       >
         <div style={{ width: "170px" }}>
           <LeftOutlined
-            onClick={() => window.history.back()}
+            onClick={() => navigate(-1)}
             style={{ cursor: "pointer" }}
           />
         </div>
@@ -90,7 +93,7 @@ const CreateOrder = () => {
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button
             onClick={() => {
-              window.location.href = "/pay";
+              navigate("/pay");
             }}
           >
             提交订单

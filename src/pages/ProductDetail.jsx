@@ -31,7 +31,7 @@ const ProductDetail = () => {
   };
 
   const purchase = () => {
-    navigate("/OrderDetail");
+    navigate("/CreateOrder");
     console.log("purchase");
   };
 
@@ -173,14 +173,18 @@ const ProductDetail = () => {
       >
         <div
           className="right_box_item"
-          onClick={navigate("/home")}
+          onClick={() => {
+            navigate("/home");
+          }}
         >
           <HomeOutlined />
           <div>首页</div>
         </div>
         <div
           className="right_box_item"
-          onClick={navigate("/Cart")}
+          onClick={() => {
+            navigate("/Cart");
+          }}
         >
           <ShoppingCartOutlined />
           <div>购物车</div>
