@@ -30,7 +30,7 @@ function MainLayout() {
             margin: "0",
             position: "fixed",
             bottom: "0",
-            width: "100%",
+            width: "430px",
             height: "50px",
             boxShadow: "0px -2px 5px 0px #ccc",
           }}

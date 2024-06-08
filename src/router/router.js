@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/login", element: <Login /> },
-  { path: "/product/:id", element: <ProductDetail /> },
+  { path: "/product/:id", element: <ProductDetail /> }, //路径参数商品id
   { path: "/orderdetail", element: <OrderDetail /> },
   { path: "/pay", element: <Pay /> },
   { path: "/paysuccess", element: <PaySuccess /> },
