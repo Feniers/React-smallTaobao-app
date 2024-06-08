@@ -30,6 +30,7 @@
 }
 
 .product-info {
+    width: 90%;
     text-align: center;
 }
 
@@ -38,6 +39,9 @@
     margin: 10px 0;
 }
 
-.product-info p {
-    margin: 5px 0;
+.product-info-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
 }

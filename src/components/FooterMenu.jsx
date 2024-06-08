@@ -40,7 +40,7 @@ const FooterMenu = () => {
       items={items}
       style={{
         height: "50px",
-        width: "100%",
+        width: "430px",
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",

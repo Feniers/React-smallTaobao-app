@@ -13,20 +13,23 @@ import ProductList from "../components/ProductList";
 import { ServiceContext } from "../contexts/ServiceContext";
 
 const contentStyle = {
-  height: "160px",
+  height: "200px",
+  width: "400px",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
-  background: "#ffffff",
   borderRadius: "10px 10px 0 0",
 };
 
 const HomePage = () => {
-  console.log("HomePage");
+  // console.log("HomePage");
 
   const { good: goodService } = useContext(ServiceContext);
 
   const goods = goodService.getGoodList();
+
+  //从goods中筛选出销量大于100的商品
+  const hotGoods = goods.filter((good) => good.sales > 100);
 
   return (
     <div className="HomePage">
@@ -49,21 +52,18 @@ const HomePage = () => {
               overflow: "hidden",
             }}
           >
-            <img
-              src="https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg"
-              alt="img"
-              style={contentStyle}
-            />
-            <img
-              src="https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg"
-              alt="img"
-              style={contentStyle}
-            />
-            <img
-              src="https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg"
-              alt="img"
-              style={contentStyle}
-            />
+            {hotGoods.map((good) => (
+              <div key={good.id}>
+                <img
+                  src={good.img}
+                  alt={good.name}
+                  style={contentStyle}
+                  onError={(e) => {
+                    e.target.src = "https://picsum.photos/400/200?random=1";
+                  }}
+                />
+              </div>
+            ))}
           </Carousel>
         </div>
       </div>

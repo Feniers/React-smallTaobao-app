@@ -21,7 +21,7 @@
 
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 430px;
     z-index: 1;
     background-color: #CB573C;
 
@@ -46,6 +46,8 @@ input {
     margin-top: 60px;
     padding: 0 15px;
 }
+
+
 
 .mid {
     display: flex;
