@@ -16,6 +16,8 @@ const CreateOrder = () => {
           position: "fixed",
           top: 0,
           borderBottom: "1px solid #ccc",
+          zIndex: 100,
+          backgroundColor: "#fff",
         }}
       >
         <div style={{ width: "170px" }}>
