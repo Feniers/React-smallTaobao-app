@@ -1,0 +1,56 @@
+/* src/components/ProductGrid.css */
+.my-masonry-grid {
+    display: flex;
+    /* margin-left: 20px; */
+    margin-right: 10px;
+    /* 间距大小的偏移，确保列之间有空间 */
+    width: auto;
+}
+
+.my-masonry-grid_column {
+    padding-left: 10px;
+    /* 每列左侧的填充，确保列之间有空间 */
+    background-clip: padding-box;
+    /* 确保背景不会超出边界 */
+}
+
+.product-card {
+    background: white;
+    margin-bottom: 10px;
+    /* 每个卡片底部的间距 */
+    border-radius: 5px;
+    /* 卡片圆角 */
+    box-shadow: 0px 0px 5px 1px rgb(0 0 0 / 16%);
+    /* 卡片阴影效果 */
+    padding: 15px;
+    /* 卡片内边距 */
+}
+
+.product-card img {
+    max-width: 100%;
+    /* 图片宽度为卡片宽度的100% */
+    border-radius: 5px 5px 0 0;
+    /* 图片顶部圆角，与卡片一致 */
+}
+
+.product-card-list {
+    background: white;
+    margin-bottom: 10px;
+    /* 每个卡片底部的间距 */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.product-info {
+    width: 45%;
+}
+
+.product-card-list img {
+    max-width: 50%;
+    max-height: 100%;
+    /* 图片宽度为卡片宽度的100% */
+    border-radius: 5px 0 0 5px;
+    /* 图片左侧圆角 */
+}

@@ -10,6 +10,7 @@ import OrderDetail from "../pages/OrderDetail";
 import Pay from "../pages/Pay";
 import PaySuccess from "../pages/PaySuccess";
 import CreateOrder from "../pages/CreateOrder";
+import GoodList from "../pages/GoodList";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
   { path: "/pay", element: <Pay /> },
   { path: "/paysuccess", element: <PaySuccess /> },
   { path: "/createorder", element: <CreateOrder /> },
+  { path: "/goods", element: <GoodList /> }, //路径参数商品分类
 ]);
 
 export default router;
