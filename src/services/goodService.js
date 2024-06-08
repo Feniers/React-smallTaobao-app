@@ -7,7 +7,8 @@ const defaultList = [
     categoryId: "1",
     description: "商品1的描述",
     //以id作为随机数，确保每次刷新页面图片都不一样
-    img: `https://picsum.photos/400/200?random=${Math.random()}`,
+    // img: `https://picsum.photos/400/200?random=${Math.random()}`,
+    img: "goods/bleu.jpg",
   },
   {
     id: 2,
@@ -16,7 +17,7 @@ const defaultList = [
     sales: 52,
     categoryId: "2",
     description: "商品2的描述",
-    img: `https://picsum.photos/400/300?random=${Math.random()}`,
+    img: "goods/cola.jpg",
   },
   {
     id: 3,
@@ -25,7 +26,7 @@ const defaultList = [
     sales: 121,
     categoryId: "3",
     description: "商品3的描述",
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    img: "goods/rio.jpg",
   },
   {
     id: 4,
@@ -34,7 +35,7 @@ const defaultList = [
     sales: 23,
     categoryId: "4",
     description: "商品4的描述",
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    img: "goods/OIP.jpg",
   },
   {
     id: 5,
@@ -43,7 +44,7 @@ const defaultList = [
     sales: 134,
     categoryId: "5",
     description: "商品5的描述",
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    img: "goods/wire.jpg",
   },
   {
     id: 6,
@@ -52,7 +53,7 @@ const defaultList = [
     sales: 12,
     categoryId: "6",
     description: "商品6的描述",
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    img: "goods/bleu.jpg",
   },
   {
     id: 7,
@@ -61,7 +62,7 @@ const defaultList = [
     sales: 67,
     categoryId: "7",
     description: "商品7的描述",
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    img: "goods/tea.jpg",
   },
   {
     id: 8,
@@ -70,7 +71,7 @@ const defaultList = [
     sales: 231,
     categoryId: "8",
     description: "商品8的描述",
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    img: "goods/cola.jpg",
   },
   {
     id: 9,
@@ -79,7 +80,7 @@ const defaultList = [
     sales: 34,
     categoryId: "9",
     description: "商品9的描述",
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    img: "goods/rio.jpg",
   },
   {
     id: 10,
@@ -88,7 +89,7 @@ const defaultList = [
     sales: 56,
     categoryId: "10",
     description: "商品10的描述",
-    img: `https://picsum.photos/400/500?random=${Math.random()}`,
+    img: "goods/OIP.jpg",
   },
 ];
 
@@ -96,6 +97,7 @@ class GoodService {
   list = [];
 
   constructor() {
+    localStorage.removeItem("goodList");
     console.log("GoodService constructor");
     this._loadData();
   }
