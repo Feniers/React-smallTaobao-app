@@ -6,7 +6,7 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
 const items = [
   {
@@ -32,12 +32,29 @@ const items = [
 ];
 
 const FooterMenu = () => {
+  const navigate = useNavigate();
+
+  const isUserLoggedIn = () => {
+    const user = localStorage.getItem("currentUser");
+    return !!user;
+  };
+
+  const handleMenuClick = (e) => {
+    if (e.key === "cart" || e.key === "profile") {
+      if (!isUserLoggedIn()) {
+        navigate("/login");
+        return;
+      }
+    }
+    navigate(`/${e.key}`);
+  };
   return (
     <Menu
       mode="horizontal"
       theme="light"
       defaultSelectedKeys={["home"]}
       items={items}
+      onClick={handleMenuClick}
       style={{
         height: "50px",
         width: "430px",

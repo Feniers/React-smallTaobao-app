@@ -71,7 +71,8 @@ function Cart() {
 
     // 计算可使用的优惠券数量，每张优惠券满300可用
     const maxCoupons = Math.floor(total / 300);
-    const couponsUsed = Math.min(user.coupon, maxCoupons); // 确保不使用超过持有的优惠券数量
+    const coupons = user.coupon ? Math.min(user.coupon, maxCoupons) : 0;
+    const couponsUsed = Math.min(coupons, maxCoupons); // 确保不使用超过持有的优惠券数量
     const discount = couponsUsed * 40; // 每张优惠券满300减40
     // setDiscountTotal(discount); // 更新优惠总额
     // 应用优惠
@@ -96,7 +97,8 @@ function Cart() {
 
     // 计算可使用的优惠券数量，每张优惠券满300可用
     const maxCoupons = Math.floor(total / 300);
-    const couponsUsed = Math.min(user.coupon, maxCoupons); // 确保不使用超过持有的优惠券数量
+    const coupons = user.coupon ? Math.min(user.coupon, maxCoupons) : 0;
+    const couponsUsed = Math.min(coupons, maxCoupons); // 确保不使用超过持有的优惠券数量
     const discount = couponsUsed * 40; // 每张优惠券满300减40
     // 应用优惠
     let totalAccount = discount + discountPrice;
