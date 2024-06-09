@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Menu } from "antd";
 import {
   HomeOutlined,
@@ -6,7 +6,8 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ServiceContext } from "../contexts/ServiceContext";
 
 const items = [
   {
@@ -33,15 +34,12 @@ const items = [
 
 const FooterMenu = () => {
   const navigate = useNavigate();
-
-  const isUserLoggedIn = () => {
-    const user = localStorage.getItem("currentUser");
-    return !!user;
-  };
+  const { user: userService } = useContext(ServiceContext);
 
   const handleMenuClick = (e) => {
+    console.log(e.key);
     if (e.key === "cart" || e.key === "profile") {
-      if (!isUserLoggedIn()) {
+      if (userService.getUser() === null) {
         navigate("/login");
         return;
       }
