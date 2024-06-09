@@ -6,6 +6,7 @@ const defaultList = [
     sales: 45,
     categoryId: "1",
     description: "商品1的描述",
+    discountPrice:19,
     //以id作为随机数，确保每次刷新页面图片都不一样
     img: `https://picsum.photos/400/200?random=${Math.random()}`,
   },
@@ -16,6 +17,7 @@ const defaultList = [
     sales: 52,
     categoryId: "2",
     description: "商品2的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/300?random=${Math.random()}`,
   },
   {
@@ -25,6 +27,7 @@ const defaultList = [
     sales: 121,
     categoryId: "3",
     description: "商品3的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/500?random=${Math.random()}`,
   },
   {
@@ -34,6 +37,7 @@ const defaultList = [
     sales: 23,
     categoryId: "4",
     description: "商品4的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/500?random=${Math.random()}`,
   },
   {
@@ -43,6 +47,7 @@ const defaultList = [
     sales: 134,
     categoryId: "5",
     description: "商品5的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/500?random=${Math.random()}`,
   },
   {
@@ -52,6 +57,7 @@ const defaultList = [
     sales: 12,
     categoryId: "6",
     description: "商品6的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/500?random=${Math.random()}`,
   },
   {
@@ -61,6 +67,7 @@ const defaultList = [
     sales: 67,
     categoryId: "7",
     description: "商品7的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/500?random=${Math.random()}`,
   },
   {
@@ -70,6 +77,7 @@ const defaultList = [
     sales: 231,
     categoryId: "8",
     description: "商品8的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/500?random=${Math.random()}`,
   },
   {
@@ -79,6 +87,7 @@ const defaultList = [
     sales: 34,
     categoryId: "9",
     description: "商品9的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/500?random=${Math.random()}`,
   },
   {
@@ -88,6 +97,7 @@ const defaultList = [
     sales: 56,
     categoryId: "10",
     description: "商品10的描述",
+    discountPrice:19,
     img: `https://picsum.photos/400/500?random=${Math.random()}`,
   },
 ];

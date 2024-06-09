@@ -24,6 +24,7 @@ const defaultUserList = [
       { id: 1, amount: 2 },
       { id: 2, amount: 1 },
     ],
+    coupon: 3
   },
   {
     id: 2,
@@ -40,6 +41,7 @@ const defaultUserList = [
       { id: 1, amount: 2 },
       { id: 2, amount: 1 },
     ],
+    coupon:2
   },
 ];
 

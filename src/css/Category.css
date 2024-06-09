@@ -1,0 +1,23 @@
+.Header {
+	display: flex;
+	justify-content: space-around;
+	height: 52px;
+	align-items: center;
+	font-size: 24px;
+	color: white;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+	background-color: #CB573C;
+
+}
+
+.allGoods {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	justify-content: flex-end;
+}
