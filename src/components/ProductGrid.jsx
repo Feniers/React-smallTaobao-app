@@ -53,11 +53,11 @@ const ProductGrid = ({ products, showDetail = false }) => {
               <img src={product.img} alt={product.name} />
               <div className="product-info">
                 <h3>{product.name}</h3>
-                <div className="product-info-bottom">
-                  <Price price={product.price} />
-                  <span> 销量：{product.sales}</span>
+                <Price price={product.price} />
+                <span> {product.sales}人累计付款</span>
+                <div className="merchant">
+                  {product.merchant === "" ? "十年老店" : product.merchant}{" "}
                 </div>
-                <div className="product-desc">{product.desc}</div>
               </div>
             </div>
           );

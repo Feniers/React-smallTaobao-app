@@ -7,7 +7,7 @@ function Price({ price }) {
       <span
         style={{
           color: "red",
-          fontSize: "2em",
+          fontSize: "1.5em",
           fontWeight: "bold",
         }}
       >

@@ -36,21 +36,49 @@
 .product-card-list {
     background: white;
     margin-bottom: 10px;
-    /* 每个卡片底部的间距 */
+
+    height: 140px;
 
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-}
 
-.product-info {
-    width: 45%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 1px rgb(0 0 0 / 16%);
+
+    position: relative;
 }
 
 .product-card-list img {
     max-width: 50%;
+    width: 50%;
     max-height: 100%;
     /* 图片宽度为卡片宽度的100% */
     border-radius: 5px 0 0 5px;
     /* 图片左侧圆角 */
+}
+
+.product-info {
+    width: 45%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-info h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.merchant {
+    background-color: #e3e3e3f9;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 5px 5px;
+    margin: 10px 0;
+
+    position: absolute;
+    bottom: 0;
+
 }
