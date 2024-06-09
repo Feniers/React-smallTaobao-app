@@ -10,7 +10,7 @@ const defaultList = [
     //以id作为随机数，确保每次刷新页面图片都不一样
     merchant: "南极人",
     // img: `https://picsum.photos/400/200?random=${Math.random()}`,
-    img: "goods/bleu.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/c4112768b4de752e.jpg",
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const defaultList = [
     categoryId: 1,
     description: "商品2的描述",
     merchant: "可口可乐官方旗舰店",
-    img: "goods/cola.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/fb5d81becacba1cd.jpg",
     discountPrice: 19,
   },
   {
@@ -32,7 +32,7 @@ const defaultList = [
     description: "商品3的描述",
     discountPrice: 19,
     merchant: "",
-    img: "goods/rio.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/1bfb272ce8abd25d.jpg",
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const defaultList = [
     categoryId: 2,
     description: "商品4的描述",
     merchant: "",
-    img: "goods/OIP.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/456238426b43602d.jpg",
     discountPrice: 19,
   },
   {
@@ -53,7 +53,7 @@ const defaultList = [
     categoryId: 1,
     description: "商品5的描述",
     merchant: "淘工厂直营店",
-    img: "goods/wire.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/1e19c1e822894fb1.jpg",
     discountPrice: 19,
   },
   {
@@ -65,7 +65,7 @@ const defaultList = [
     description: "商品6的描述",
     discountPrice: 10,
     merchant: "chanel",
-    img: "goods/bleu.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/4ac99d37b1a54658.jpg",
   },
   {
     id: 7,
@@ -76,7 +76,7 @@ const defaultList = [
     description: "商品7的描述",
     discountPrice: 19,
     merchant: "可口可乐官方旗舰店",
-    img: "goods/tea.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/fb5d81becacba1cd.jpg",
   },
   {
     id: 8,
@@ -87,7 +87,7 @@ const defaultList = [
     description: "商品8的描述",
     discountPrice: 19,
     merchant: "",
-    img: "goods/cola.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/1e19c1e822894fb1.jpg",
   },
   {
     id: 9,
@@ -98,7 +98,7 @@ const defaultList = [
     description: "商品9的描述",
     discountPrice: 19,
     merchant: "",
-    img: "goods/rio.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/1bfb272ce8abd25d.jpg",
   },
   {
     id: 10,
@@ -109,7 +109,7 @@ const defaultList = [
     description: "商品10的描述",
     discountPrice: 19,
     merchant: "",
-    img: "goods/OIP.jpg",
+    img: "https://s3.bmp.ovh/imgs/2024/06/09/4ac99d37b1a54658.jpg",
   },
 ];
 

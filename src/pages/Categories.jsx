@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { Layout, Menu, Row, Col, Button } from "antd";
 import "../css/Category.css";
-import Icon from "antd/es/icon";
 import MainHeader from "../components/MainHeader";
+import { useNavigate } from "react-router-dom";
+import { RightOutlined } from "@ant-design/icons";
 const { Content, Sider } = Layout;
 
 const Categories = () => {
   const categories = [
-    { key: "1", title: "服装" },
-    { key: "2", title: "手机数码" },
-    { key: "3", title: "家用电器" },
-    { key: "4", title: "家具家装" },
-    { key: "5", title: "汽车用品" },
-    { key: "6", title: "电脑办公" },
+    { key: "1", label: "服装" },
+    { key: "2", label: "手机数码" },
+    { key: "3", label: "家用电器" },
+    { key: "4", label: "家具家装" },
+    { key: "5", label: "汽车用品" },
+    { key: "6", label: "电脑办公" },
   ];
   const subCategories = {
     1: [
@@ -46,6 +47,7 @@ const Categories = () => {
     ],
   };
 
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState(categories[0].key);
 
   const handleCategoryClick = (key) => {
@@ -56,7 +58,9 @@ const Categories = () => {
     // 记录当前类别并跳转到新的页面（假设路径为 /all-products）
     console.log(`当前类别: ${selectedCategory}`);
     // history.push("/all-products");
+    navigate("/goods");
   };
+
   return (
     <Layout style={{ height: "100vh" }}>
       <MainHeader />
@@ -80,10 +84,11 @@ const Categories = () => {
             defaultSelectedKeys={[selectedCategory]}
             style={{ height: "100%", borderRight: 0 }}
             onClick={({ key }) => handleCategoryClick(key)}
+            items={categories}
           >
-            {categories.map((category) => (
+            {/* {categories.map((category) => (
               <Menu.Item key={category.key}>{category.title}</Menu.Item>
-            ))}
+            ))} */}
           </Menu>
         </Sider>
         <Layout
@@ -100,8 +105,8 @@ const Categories = () => {
           <Content style={{ height: "100%", overflow: "auto" }}>
             <div className="allGoods">
               <Button type="Link" onClick={handleAllProductsClick}>
-                所有商品 <span style={{ marginLeft: "5px" }}>></span>
-                <Icon type="right" style={{ color: "black" }} />
+                所有商品
+                <RightOutlined />
               </Button>
             </div>
             <Row gutter={[16, 16]}>

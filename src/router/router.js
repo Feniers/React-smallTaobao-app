@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     element: <GoodList />,
     children: [
       {
-        path: ":categories",
+        path: ":category",
         element: <GoodList />,
       },
     ],

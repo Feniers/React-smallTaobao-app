@@ -22,8 +22,8 @@ function Login() {
   };
 
   return (
-    <div className="Login">
-      <div className="Form-box">
+    <div className="login">
+      <div className="form-box">
         <Form
           name="basic"
           labelCol={{
