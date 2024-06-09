@@ -7,7 +7,7 @@ const defaultList = [
     payTime: "2018-01-01 00:00:00",
     status: 0, // 0,未支付 1已支付 2发货 3确认收货
     price: 100,
-    goodId: 1,
+    goodId: [1, 2],
   },
 ];
 
@@ -19,7 +19,28 @@ class OrderService {
     this._loadData();
   }
 
-  createOrder(userId, goodId, price) {
+  // createOrder(userId, goodId, price) {
+  //   const orderNo = new Date().getTime();
+  //   // 从list中找到最大值，生成新的id
+  //   const maxId = this.list.reduce((max, item) => {
+  //     return item.id > max ? item.id : max;
+  //   }, 0);
+
+  //   const order = {
+  //     id: maxId + 1,
+  //     userId,
+  //     goodId,
+  //     orderNo,
+  //     createTime: new Date().toLocaleString(),
+  //     status: 0,
+  //     price,
+  //   };
+  //   this.list.push(order);
+  //   this._saveData();
+  //   return order;
+  // }
+
+  createOrder(newOrder) {
     const orderNo = new Date().getTime();
     // 从list中找到最大值，生成新的id
     const maxId = this.list.reduce((max, item) => {
@@ -27,13 +48,11 @@ class OrderService {
     }, 0);
 
     const order = {
+      ...newOrder,
       id: maxId + 1,
-      userId,
-      goodId,
       orderNo,
       createTime: new Date().toLocaleString(),
       status: 0,
-      price,
     };
     this.list.push(order);
     this._saveData();
