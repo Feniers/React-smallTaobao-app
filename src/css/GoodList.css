@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+
+    background: linear-gradient(to bottom right, rgb(255, 21, 76), rgb(253, 149, 12));
+
+    height: 40px;
+    width: 96%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+
+}
+
+.main {
+    margin-top: 70px;
+}

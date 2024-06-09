@@ -31,6 +31,19 @@ class UserService {
     return this.currentUser ? this.currentUser.cart : [];
   }
 
+  getCart() {
+    return this.currentUser.cart;
+  }
+
+  /**
+   * 传入的cart会完全覆盖原来的cart
+   * @param {*} cart
+   */
+  setCart(cart) {
+    this.currentUser.cart = cart;
+    this._setData();
+  }
+
   _setData() {
     localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
   }

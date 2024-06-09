@@ -8,9 +8,10 @@ import {
 } from "@ant-design/icons";
 import React, { useContext } from "react";
 import "../css/Home.css";
+import ProductGrid from "../components/ProductGrid";
 import { Carousel } from "antd";
-import ProductList from "../components/ProductList";
 import { ServiceContext } from "../contexts/ServiceContext";
+import { useNavigate } from "react-router-dom";
 
 const contentStyle = {
   height: "200px",
@@ -25,6 +26,7 @@ const HomePage = () => {
   // console.log("HomePage");
 
   const { good: goodService } = useContext(ServiceContext);
+  const navigate = useNavigate();
 
   const goods = goodService.getGoodList();
 
@@ -69,7 +71,13 @@ const HomePage = () => {
       </div>
 
       <div className="mid">
-        <div className="mid_box_item">
+        <div
+          className="mid_box_item"
+          onClick={() => {
+            console.log("点击了专题");
+            navigate("/goods");
+          }}
+        >
           <GiftFilled />
           <div>专题</div>
         </div>
@@ -88,7 +96,7 @@ const HomePage = () => {
       </div>
 
       <div className="bottom">
-        <ProductList products={goods} />
+        <ProductGrid products={goods} />
       </div>
     </div>
   );
