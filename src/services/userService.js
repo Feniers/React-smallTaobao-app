@@ -26,6 +26,10 @@ class UserService {
   getUser() {
     return this.currentUser;
   }
+  getCart() {
+    // 如果当前用户存在，则返回其购物车，否则返回空数组
+    return this.currentUser ? this.currentUser.cart : [];
+  }
 
   getCart() {
     return this.currentUser.cart;
