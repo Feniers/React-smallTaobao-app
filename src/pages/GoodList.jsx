@@ -16,8 +16,8 @@ function GoodList() {
   const [showDetail, setShowDetail] = React.useState(false);
 
   return (
-    <div className="GoodList">
-      <div className="header">
+    <div className="goods-page">
+      <div className="goods-header header">
         <Button ghost="true" icon={<LeftOutlined />} href="/home"></Button>
         <h1>商品列表</h1>
         <Button

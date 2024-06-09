@@ -30,7 +30,16 @@ const router = createBrowserRouter([
   { path: "/pay", element: <Pay /> },
   { path: "/paysuccess", element: <PaySuccess /> },
   { path: "/createorder", element: <CreateOrder /> },
-  { path: "/goods", element: <GoodList /> }, //路径参数商品分类
+  {
+    path: "/goods/",
+    element: <GoodList />,
+    children: [
+      {
+        path: ":categories",
+        element: <GoodList />,
+      },
+    ],
+  }, //路径参数商品分类
 ]);
 
 export default router;

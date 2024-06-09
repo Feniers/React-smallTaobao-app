@@ -9,27 +9,8 @@
 
 }
 
-.Header {
-    display: flex;
-    justify-content: space-around;
-    height: 52px;
-    align-items: center;
-    font-size: 24px;
-    color: white;
-    margin: 0;
-    padding: 0;
-
-    position: fixed;
-    top: 0;
-    width: 430px;
-    z-index: 1;
-    background-color: #CB573C;
-
-}
-
-.SearchBox {
+.search-box {
     width: 70%;
-
 }
 
 input {
@@ -42,12 +23,10 @@ input {
     font: 14px;
 }
 
-.Carousel_box {
+.carousel_box {
     margin-top: 60px;
     padding: 0 15px;
 }
-
-
 
 .mid {
     display: flex;
@@ -73,12 +52,3 @@ input {
     margin: 0;
     padding: 0;
 }
-
-/* .mid_box_item 的最邻近子元素 */
-/* .mid_box_item>span {
-    background-color: aquamarine;
-    border-radius: 50%;
-    width: 70%;
-    height: 70%;
-
-} */

@@ -1,9 +1,7 @@
 import {
   GiftFilled,
   HeartTwoTone,
-  MessageOutlined,
   RocketTwoTone,
-  ScanOutlined,
   ShoppingTwoTone,
 } from "@ant-design/icons";
 import React, { useContext } from "react";
@@ -12,6 +10,7 @@ import ProductGrid from "../components/ProductGrid";
 import { Carousel } from "antd";
 import { ServiceContext } from "../contexts/ServiceContext";
 import { useNavigate } from "react-router-dom";
+import MainHeader from "../components/MainHeader";
 
 const contentStyle = {
   height: "200px",
@@ -33,17 +32,15 @@ const HomePage = () => {
   //从goods中筛选出销量大于100的商品
   const hotGoods = goods.filter((good) => good.sales > 100);
 
+  const handelClick = () => {
+    navigate("/goods");
+  };
+
   return (
-    <div className="HomePage">
+    <div className="home-page">
       <div className="top">
-        <div className="Header">
-          <ScanOutlined />
-          <div className="SearchBox">
-            <input type="text" placeholder=" 请输入商品 如：手机" />
-          </div>
-          <MessageOutlined />
-        </div>
-        <div className="Carousel_box">
+        <MainHeader />
+        <div className="carousel_box">
           <Carousel
             autoplay
             arrows={true}
@@ -71,25 +68,19 @@ const HomePage = () => {
       </div>
 
       <div className="mid">
-        <div
-          className="mid_box_item"
-          onClick={() => {
-            console.log("点击了专题");
-            navigate("/goods");
-          }}
-        >
+        <div className="mid_box_item" onClick={handelClick}>
           <GiftFilled />
           <div>专题</div>
         </div>
-        <div className="mid_box_item">
+        <div className="mid_box_item" onClick={handelClick}>
           <RocketTwoTone />
           <div>话题</div>
         </div>
-        <div className="mid_box_item">
+        <div className="mid_box_item" onClick={handelClick}>
           <HeartTwoTone />
           <div>优选</div>
         </div>
-        <div className="mid_box_item">
+        <div className="mid_box_item" onClick={handelClick}>
           <ShoppingTwoTone />
           <div>特惠</div>
         </div>

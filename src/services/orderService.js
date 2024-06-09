@@ -15,6 +15,7 @@ class OrderService {
   list = [];
 
   constructor() {
+    localStorage.removeItem("orderList");
     console.log("OrderService constructor");
     this._loadData();
   }
