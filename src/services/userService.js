@@ -28,9 +28,6 @@ class UserService {
     return this.currentUser ? this.currentUser.cart : [];
   }
 
-  getCart() {
-    return this.currentUser.cart;
-  }
 
   /**
    * 传入的cart会完全覆盖原来的cart
