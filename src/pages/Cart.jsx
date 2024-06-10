@@ -15,9 +15,7 @@ const { Text } = Typography;
 function Cart() {
   const navigate = useNavigate();
   //结构函数
-  const { good: goodService } = useContext(ServiceContext);
-  const { user: userService } = useContext(ServiceContext);
-  const { order: orderService } = useContext(ServiceContext);
+  const { good: goodService, user: userService } = useContext(ServiceContext);
   const user = userService.getUser();
   console.log("user", user);
   const cart = userService.getCart();
@@ -156,19 +154,18 @@ function Cart() {
       .map((product) => ({
         id: product.id,
         quantity: product.quantity,
-        discount:product.discountPrice//注意这是一个商品的价格
+        discount: product.discountPrice, //注意这是一个商品的价格
       }));
 
-
     const total = calculateTotalPrice(); // 计算总价格
-    const { totalDiscount, couponsUsed } = calculateTotalAccount();//总优惠金额和满减券使用数量
+    const { totalDiscount, couponsUsed } = calculateTotalAccount(); //总优惠金额和满减券使用数量
 
     const checkoutData = {
       selectedProducts,
       total,
-      shippingCost:20,
+      shippingCost: 20,
       totalDiscount,
-      couponsUsed
+      couponsUsed,
     };
 
     localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
@@ -225,7 +222,6 @@ function Cart() {
                   </Text>
                   <Text>{product.description}</Text>
                   <div>
-
                     {/*<p>{product.name}</p>*/}
                     <Text mark style={{ display: "inline-block" }}>
                       七天无理由退货
@@ -287,7 +283,6 @@ function Cart() {
                     onChange={(value) => updateQuantity(product.id, value)}
                     style={{ bottom: 0 }}
                   />
-
                 </div>
               </Col>
             </Row>
@@ -308,7 +303,6 @@ function Cart() {
             </Col>
             <Col span={16}>
               <div className="vertical-center">
-
                 {/*<div>已优惠：¥{calculateTotalAccount()} 元</div>*/}
                 {/*<div>已优惠：¥{discountTotal} 元</div> /!* 显示已优惠金额 *!/*/}
                 <div className="flex">

@@ -9,13 +9,41 @@ const defaultList = [
     price: 100,
     discount: 30,
     shippingCost: 20,
-    goods: [{
-      id: 1,
-      quantity: 2,
-    }],
+    goods: [
+      {
+        id: 1,
+        quantity: 2,
+      },
+    ],
     payMethod: 1,
     address: {
-      name: "dyh",  
+      name: "dyh",
+      address: "beijing",
+    },
+  },
+  {
+    id: 2,
+    userId: 1,
+    orderNo: "201801010002",
+    createTime: "2018-01-01 00:00:00",
+    payTime: "2018-01-01 00:00:00",
+    status: 1,
+    price: 200,
+    discount: 50,
+    shippingCost: 20,
+    goods: [
+      {
+        id: 1,
+        quantity: 2,
+      },
+      {
+        id: 2,
+        quantity: 1,
+      },
+    ],
+    payMethod: 1,
+    address: {
+      name: "dyh",
       address: "beijing",
     },
   },
@@ -100,6 +128,10 @@ class OrderService {
     console.log("getOrderById", this.list, orderId);
     const id = parseInt(orderId);
     return this.list.find((item) => item.id === id);
+  }
+
+  getOrderList() {
+    return this.list;
   }
 
   // 将数据存入到localstorage中

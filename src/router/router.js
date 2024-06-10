@@ -12,6 +12,7 @@ import PaySuccess from "../pages/PaySuccess";
 import CreateOrder from "../pages/CreateOrder";
 import GoodList from "../pages/GoodList";
 import ErrorPage from "../pages/ErrorPage";
+import OrderPage from "../pages/OrderPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,16 @@ const router = createBrowserRouter([
   { path: "/pay/:id", element: <Pay /> },
   { path: "/paysuccess/:id", element: <PaySuccess /> },
   { path: "/createorder", element: <CreateOrder /> },
+  {
+    path: "/order/",
+    element: <OrderPage />,
+    children: [
+      {
+        path: ":state",
+        element: <OrderPage />,
+      },
+    ],
+  }, //路径参数订单状态
   {
     path: "/goods/",
     element: <GoodList />,
