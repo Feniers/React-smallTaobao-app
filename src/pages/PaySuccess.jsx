@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import { LeftOutlined, CheckCircleFilled } from "@ant-design/icons";
 import { Button } from "antd";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {ServiceContext} from "../contexts/ServiceContext";
 
 const PaySuccess = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { order: orderService} = useContext(ServiceContext);
+  const order = orderService.getOrderById(parseInt(id));
   return (
     <div>
       <div
@@ -43,7 +47,7 @@ const PaySuccess = () => {
               color: "#fff",
             }}
             onClick={() => {
-              navigate("/OrderDetail");
+                navigate(`/OrderDetail/${order.id}`);
             }}
           >
             查看订单
