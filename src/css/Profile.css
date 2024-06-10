@@ -1,0 +1,74 @@
+.profile-page {
+    height: 100%;
+
+    background-color: rgb(228, 228, 228);
+
+}
+
+.person-info {
+    height: 20%;
+    background-image: url("https://s3.bmp.ovh/imgs/2024/06/10/99f018097ffc9771.jpg");
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.avatar {
+    border-radius: 50%;
+    /* margin-top: 70px; */
+    /* margin-left: 20px; */
+}
+
+.person-info p {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.setting {
+    height: 100%;
+}
+
+.setting Button {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.profile-order {
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: large;
+    text-align: center;
+
+    background-color: white;
+
+}
+
+.profile-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin: 20px 10px;
+    height: 60%;
+
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px #ccc;
+
+}
+
+.profile-item {
+    width: 100%;
+
+    padding-left: 5px;
+    margin: 5px 0;
+
+    border-bottom: 1px solid #ccc;
+}

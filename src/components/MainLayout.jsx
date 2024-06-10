@@ -9,8 +9,8 @@ const { Content, Footer } = Layout;
 function MainLayout() {
   return (
     <div className="main-page">
-      <Layout className="mainLayout">
-        <Content>
+      <Layout className="main-layout">
+        <Content className="main-content">
           <Outlet />
         </Content>
         <Footer className="main-footer">
