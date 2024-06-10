@@ -37,12 +37,15 @@ const FooterMenu = () => {
   const { user: userService } = useContext(ServiceContext);
 
   const handleMenuClick = (e) => {
-    console.log(e.key);
-    if (e.key === "cart" || e.key === "profile") {
-      if (userService.getUser() === null) {
-        navigate("/login");
-        return;
-      }
+    // if (e.key === "cart" || e.key === "profile") {
+    //   if (userService.getUser() === null) {
+    //     navigate("/login");
+    //     return;
+    //   }
+    // }
+    if (e.key === "cart" && userService.getUser() === null) {
+      navigate("/login");
+      return;
     }
     navigate(`/${e.key}`);
   };

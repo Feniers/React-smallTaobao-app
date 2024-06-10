@@ -11,10 +11,13 @@ function Login() {
   const onFinish = (values) => {
     console.log("Success:", values);
 
-    const user = userService.logging("dyh", "123456");
-    console.log(user);
-
-    navigate(-1);
+    const user = userService.logging(values.name, values.password);
+    if (user) {
+      console.log("登录成功");
+      navigate(-1);
+    } else {
+      console.log("登录失败");
+    }
   };
 
   const onFinishFailed = (errorInfo) => {

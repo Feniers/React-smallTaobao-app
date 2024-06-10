@@ -45,7 +45,8 @@ class UserService {
   currentUser = null;
 
   constructor() {
-    this.userList = JSON.parse(localStorage.getItem("userList")) || [];
+    this._loadData();
+    // console.log("UserService constructor", this.currentUser);
   }
 
   logging(username, password) {
@@ -55,17 +56,20 @@ class UserService {
     );
     if (user) {
       this.currentUser = user;
+      console.log("UserService logging: currentUser", this.currentUser);
       this._setData();
     }
     return !!user;
   }
 
   logout() {
+    console.log("UserService logout: currentUser", this.currentUser);
     this.currentUser = null;
     localStorage.removeItem("currentUser");
   }
 
   getUser() {
+    console.log("UserService getUser: currentUser", this.currentUser);
     return this.currentUser;
   }
   getCart() {
@@ -88,10 +92,11 @@ class UserService {
 
   _loadData() {
     const user = localStorage.getItem("currentUser");
+    this.userList = JSON.parse(localStorage.getItem("userList")) || [];
     if (user) {
       this.currentUser = JSON.parse(user);
     } else {
-      console.log("no user");
+      console.log("no login");
     }
   }
 }

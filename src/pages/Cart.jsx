@@ -16,7 +16,7 @@ function Cart() {
   const { good: goodService } = useContext(ServiceContext);
   const { user: userService } = useContext(ServiceContext);
   const user = userService.getUser();
-  console.log(user);
+  console.log("user", user);
   const cart = userService.getCart();
   const [products, setProducts] = useState([]);
 
