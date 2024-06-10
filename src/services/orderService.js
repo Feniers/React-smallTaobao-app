@@ -8,7 +8,7 @@ const defaultList = [
     status: 0, // 0,未支付 1已支付 2发货 3确认收货
     price: 100,
     discount:30,
-    yunfei:20,
+    shippingCost:20,
     goodId: [1, 2],
   },
 ];
@@ -59,7 +59,7 @@ class OrderService {
     };
     this.list.push(order);
     this._saveData();
-    return order;
+    return maxId+1;
   }
 
   payOrder(orderId) {

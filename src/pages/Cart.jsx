@@ -1,20 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
-import {MessageOutlined, ScanOutlined, ShopFilled, ShoppingCartOutlined} from "@ant-design/icons";
-import { Button, Card, Checkbox, Col, InputNumber, Row } from "antd";
+import { ShopFilled} from "@ant-design/icons";
+import { Button, Card, Checkbox, Col, Row } from "antd";
 import "../css/Cart.css";
 import { ServiceContext } from "../contexts/ServiceContext";
 import { Typography } from "antd";
 import MainHeader from "../components/MainHeader";
-import Icon from "antd/es/icon";
-import { Stepper, Toast } from 'antd-mobile'
+// import Icon from "antd/es/icon";
+import { Stepper} from 'antd-mobile'
+import {useNavigate} from "react-router-dom";
 // import { DemoBlock } from 'demos'
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 function Cart() {
+  const navigate = useNavigate();
   //结构函数
   const { good: goodService } = useContext(ServiceContext);
   const { user: userService } = useContext(ServiceContext);
+  const { order: orderService } = useContext(ServiceContext);
   const user = userService.getUser();
   console.log("user", user);
   const cart = userService.getCart();
@@ -155,15 +158,18 @@ function Cart() {
         quantity: product.quantity,
       }));
 
+
     const total = calculateTotalPrice(); // 计算总价格
 
     const checkoutData = {
       selectedProducts,
       total,
+      shippingCost:20,
     };
 
     localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
-
+    let orderID = orderService.createOrder(checkoutData);
+    // navigate(`/orderdetail/${orderID}`);
     console.log("结算", checkoutData);
   };
 
@@ -177,7 +183,6 @@ function Cart() {
       {/*  </div>*/}
       {/*  <MessageOutlined />*/}
       {/*</div>*/}
-      <div></div>
       <div className="cartContent">
         {products.map((product) => (
           <Card
@@ -209,8 +214,6 @@ function Cart() {
               </Col>
               <Col span={13}>
                 <div className="flex">
-
-
 
                   <Text strong style={{ fontSize: '20px' }}>{product.name}</Text>
                   <Text >{product.description}</Text>
