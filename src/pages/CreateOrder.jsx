@@ -192,14 +192,23 @@ const CreateOrder = () => {
           borderTop: "1px solid #ccc",
         }}
       >
-        <div>
-          合计：￥
+          <div>
+              合计：
+              <span style={{color: "red"}}>￥</span>
+              <span
+                  style={{
+                      color: "red",
+                      fontSize: "2em",
+                      fontWeight: "bold",
+                  }}
+              >
           {totalPrice}
-        </div>
-        {/* 需要依次读取每个商品的价格来写 */}
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button onClick={handleSubmitOrder}>提交订单</Button>
-        </div>
+                </span>
+          </div>
+          {/* 需要依次读取每个商品的价格来写 */}
+          <div style={{display: "flex", justifyContent: "flex-end"}}>
+              <Button onClick={handleSubmitOrder}>提交订单</Button>
+          </div>
       </div>
     </div>
   );

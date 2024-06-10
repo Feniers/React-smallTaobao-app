@@ -43,9 +43,10 @@ const OrderDetail = () => {
           height: "100px",
           alignItems: "center",
           backgroundColor: "#F94167",
+          fontSize: "2.5em"
         }}
       >
-        <DropboxOutlined style={{ marginLeft: "10px" }} />
+        <DropboxOutlined style={{ marginLeft: "10px",}} />
         等待发货
       </div>
       <Card style={{
@@ -70,7 +71,7 @@ const OrderDetail = () => {
                 <img
                   src={good.img}
                   alt=""
-                  style={{ width: "30px", height: "30px", marginRight: "15px" }}
+                  style={{ width: "50px", height: "50px", marginRight: "15px",marginLeft: "2px" }}
                 />
                 <span style={{ fontSize: "20px" }}>{good.name}</span>
               </div>
@@ -112,7 +113,7 @@ const OrderDetail = () => {
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             备注
           </div>
-          <div>填入</div>
+          <div>这是一个备注</div>
         </div>
       </Card>
 

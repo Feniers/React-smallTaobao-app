@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { Carousel, Button, Divider, Card } from "antd";
 import {
-  LeftOutlined,
-  HomeOutlined,
-  ShoppingCartOutlined,
-  HeartTwoTone,
-  RightOutlined,
+    LeftOutlined,
+    HomeOutlined,
+    ShoppingCartOutlined,
+    HeartTwoTone,
+    RightOutlined,
+    CheckOutlined,
+    SafetyCertificateOutlined,
 } from "@ant-design/icons";
 import "../css/detail.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -113,10 +115,49 @@ const ProductDetail = () => {
         </Carousel>
       </div>
 
-      {/* 产品名 */}
-      <h2>{good.name}</h2>
-      <div>{good.description}</div>
-      <Divider style={{ borderTop: "1px solid #f0f0f0", marginTop: "10px" }} />
+          {/* 产品名 */}
+          <div style={{marginLeft: "8px"}}>
+          <span style={{color: "red"}}>
+              ￥
+          </span>
+              <span style={{color: "red", fontSize: "3em",}}
+              >
+              {good.price}
+      </span>
+          </div>
+
+          <h2 style={{width: "90%", margin: "0 auto"}}>{good.name}</h2>
+          <div style={{width: "90%", margin: "0 auto"}}>{good.description}</div>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid #e0e0e0',
+                padding: '5px 1px',
+                borderRadius: '3px',
+                width: '100px',
+                marginLeft: "18px"
+            }}>
+                <span style={{color: '#FA8072', fontSize: '12px'}}>多人评价良好</span>
+            </div>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid #e0e0e0',
+                padding: '5px 1px',
+                borderRadius: '3px',
+                width: '100px',
+                marginLeft: "18px"
+            }}>
+                <SafetyCertificateOutlined style={{color: '#4caf50', marginRight: '5px'}}/>
+                <span style={{color: '#4caf50', fontSize: '12px'}}>退货运费险</span>
+            </div>
+
+        </div>
+
+        <Divider style={{borderTop: "1px solid #f0f0f0", marginTop: "10px"}}/>
 
       {/* 关于销售量和浏览量的卡片 */}
       <Card  style={{ width: "90%", margin: "0 auto",boxShadow:"0 4px 8px rgba(0, 0, 0, 0.3)"  }} >
