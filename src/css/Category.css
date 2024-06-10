@@ -21,3 +21,17 @@
 	margin-bottom: 20px;
 	justify-content: flex-end;
 }
+.subCategoryContainer {
+	text-align: center;
+	cursor: pointer; /* 鼠标指针变成手型 */
+}
+
+.subCategoryContainer img {
+	width: 90px;
+	height: 90px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.subCategoryContainer img:hover {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
