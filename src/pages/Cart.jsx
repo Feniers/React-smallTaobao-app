@@ -61,8 +61,8 @@ function Cart() {
 
   // 更新总金额和优惠金额
   useEffect(() => {
-    const { totalAccount, couponsUsed } = calculateTotalAccount();
-    setTotalAccount(totalAccount);
+    const { totalDiscount, couponsUsed } = calculateTotalAccount();
+    setTotalAccount(totalDiscount);
     setTotalDiscount(couponsUsed);
     console.log("这是优惠数量");
     console.log(couponsUsed);
@@ -161,13 +161,13 @@ function Cart() {
 
 
     const total = calculateTotalPrice(); // 计算总价格
-    const { totalAccount, couponsUsed } = calculateTotalAccount();//总优惠金额和满减券使用数量
+    const { totalDiscount, couponsUsed } = calculateTotalAccount();//总优惠金额和满减券使用数量
 
     const checkoutData = {
       selectedProducts,
       total,
       shippingCost:20,
-      totalAccount,
+      totalDiscount,
       couponsUsed
     };
 
