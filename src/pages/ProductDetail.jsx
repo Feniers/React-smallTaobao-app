@@ -195,8 +195,32 @@ const ProductDetail = () => {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button onClick={addCart}>加入购物车</Button>
-          <Button onClick={purchase}>购买</Button>
+          <Button
+            onClick={addCart}
+            style={{
+              background:
+                "linear-gradient(90deg, rgb(255, 203, 0), rgb(255, 148, 2))",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+              borderRadius: "20px 0px 0px 20px",
+            }}
+          >
+            加入购物车
+          </Button>
+          <Button
+            onClick={purchase}
+            style={{
+              background:
+                "linear-gradient(90deg, rgb(255, 119, 0), rgb(255, 73, 0))",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+              borderRadius: "0px 20px 20px 0px",
+            }}
+          >
+            立即购买
+          </Button>
         </div>
       </div>
     </div>
