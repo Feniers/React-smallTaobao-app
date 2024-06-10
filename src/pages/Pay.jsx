@@ -1,11 +1,16 @@
-import { useState } from "react";
+import {useContext, useState} from "react";
 import { LeftOutlined} from "@ant-design/icons";
 import { Button, Card, Radio } from "antd";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import {ServiceContext} from "../contexts/ServiceContext";
 
 const Pay = () => {
   const [value, setValue] = useState(1);
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { good: goodService,order: orderService} = useContext(ServiceContext);
+  const order = orderService.getOrderById(parseInt(id));
+
   return (
     <div>
       <div
@@ -31,7 +36,7 @@ const Pay = () => {
         }}
       >
         <h2>支付金额</h2>
-        <div>12345</div>
+        <div>{order.price}</div>
         <Radio.Group onChange={(e) => setValue(e.target.value)} value={value}>
           <Card style={{ backgroundColor: "你的颜色", width: "350px" }}>
             <div
@@ -66,7 +71,8 @@ const Pay = () => {
               color: "#fff",
             }}
             onClick={() => {
-              navigate("/PaySuccess");
+                orderService.payOrder(id,value);
+              navigate(`/PaySuccess/${order.id}`);
             }}
           >
             确认支付

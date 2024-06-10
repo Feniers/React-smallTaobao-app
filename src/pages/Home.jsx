@@ -60,6 +60,7 @@ const HomePage = () => {
                   onError={(e) => {
                     e.target.src = "https://picsum.photos/400/200?random=1";
                   }}
+                  // onClick={() => navigate(`/product/:id${good.id}`)}
                 />
               </div>
             ))}

@@ -10,6 +10,7 @@ const defaultList = [
     discount:30,
     shippingCost:20,
     goodId: [1, 2],
+    payMethod: 1
   },
 ];
 
@@ -56,18 +57,19 @@ class OrderService {
       orderNo,
       createTime: new Date().toLocaleString(),
       status: 0,
+      payMethod: 1
     };
     this.list.push(order);
     this._saveData();
     return maxId+1;
   }
 
-  payOrder(orderId) {
+  payOrder(orderId,value) {
     const order = this.getOrderById(orderId);
     if (!order) {
       return false;
     }
-
+    order.payMethod = value;
     order.status = 1;
     order.payTime = new Date().toLocaleString();
     this._saveData();

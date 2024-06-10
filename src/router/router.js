@@ -11,6 +11,7 @@ import Pay from "../pages/Pay";
 import PaySuccess from "../pages/PaySuccess";
 import CreateOrder from "../pages/CreateOrder";
 import GoodList from "../pages/GoodList";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -26,10 +27,10 @@ const router = createBrowserRouter([
   },
   { path: "/login", element: <Login /> },
   { path: "/product/:id", element: <ProductDetail /> }, //路径参数商品id
-  { path: "/orderdetail", element: <OrderDetail /> },
-  { path: "/pay", element: <Pay /> },
-  { path: "/paysuccess", element: <PaySuccess /> },
-  { path: "/createorder", element: <CreateOrder /> },
+  { path: "/orderdetail/:id", element: <OrderDetail /> },
+  { path: "/pay/:id", element: <Pay /> },
+  { path: "/paysuccess/:id", element: <PaySuccess /> },
+  { path: "/createorder/:id", element: <CreateOrder /> },
   {
     path: "/goods/",
     element: <GoodList />,
@@ -40,6 +41,8 @@ const router = createBrowserRouter([
       },
     ],
   }, //路径参数商品分类
+  { path: "/404", element: <ErrorPage /> },
+  { path: "*", element: <Navigate to="/404" /> },
 ]);
 
 export default router;

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ShopFilled} from "@ant-design/icons";
+import { ShopFilled } from "@ant-design/icons";
 import { Button, Card, Checkbox, Col, Row } from "antd";
 import "../css/Cart.css";
 import { ServiceContext } from "../contexts/ServiceContext";
 import { Typography } from "antd";
 import MainHeader from "../components/MainHeader";
 // import Icon from "antd/es/icon";
-import { Stepper} from 'antd-mobile'
-import {useNavigate} from "react-router-dom";
+import { Stepper } from "antd-mobile";
+import { useNavigate } from "react-router-dom";
 // import { DemoBlock } from 'demos'
 
 const { Text } = Typography;
@@ -61,8 +61,8 @@ function Cart() {
 
   // 更新总金额和优惠金额
   useEffect(() => {
-    const { totalDiscount, couponsUsed } = calculateTotalAccount();
-    setTotalAccount(totalDiscount);
+    const { totalAccount, couponsUsed } = calculateTotalAccount();
+    setTotalAccount(totalAccount);
     setTotalDiscount(couponsUsed);
     console.log("这是优惠数量");
     console.log(couponsUsed);
@@ -193,21 +193,24 @@ function Cart() {
             key={product.id}
             title={
               <>
-                <ShopFilled style={{ marginRight: 8 ,color: '#CB573C' }} />
+                <ShopFilled style={{ marginRight: 8, color: "#CB573C" }} />
 
                 {product.merchant}
               </>
             }
-            extra={<a href={`/product/${product.id}`} style={{ color: '#CB573C' }}>查看详情</a>}
+            extra={
+              <a href={`/product/${product.id}`} style={{ color: "#CB573C" }}>
+                查看详情
+              </a>
+            }
             className="cartItem"
           >
-            <Row style={{ height: "100%",width:"100%"}}>
+            <Row style={{ height: "100%", width: "100%" }}>
               <Col span={2}>
                 <Checkbox
                   checked={product.checked}
                   onChange={() => toggleCheck(product.id)}
-                >
-                </Checkbox>
+                ></Checkbox>
               </Col>
               <Col span={9}>
                 <img
@@ -218,14 +221,23 @@ function Cart() {
               </Col>
               <Col span={13}>
                 <div className="flex">
-
-                  <Text strong style={{ fontSize: '20px' }}>{product.name}</Text>
-                  <Text >{product.description}</Text>
+                  <Text strong style={{ fontSize: "20px" }}>
+                    {product.name}
+                  </Text>
+                  <Text>{product.description}</Text>
                   <div>
 
                     {/*<p>{product.name}</p>*/}
-                    <Text mark style={{ display: 'inline-block' }}>七天无理由退货</Text>
-                    <Text keyboard style={{ display: 'inline-block', color: '#CB573C' }}> 官方立减{product.discountPrice}元</Text>
+                    <Text mark style={{ display: "inline-block" }}>
+                      七天无理由退货
+                    </Text>
+                    <Text
+                      keyboard
+                      style={{ display: "inline-block", color: "#CB573C" }}
+                    >
+                      {" "}
+                      官方立减{product.discountPrice}元
+                    </Text>
                   </div>
                   <div>
                     <span style={{ color: "red" }}>￥</span>
@@ -258,8 +270,8 @@ function Cart() {
                         }}
                       >
                         ￥{(product.price - product.discountPrice).toFixed(2)}
-                      </Text>)}
-
+                      </Text>
+                    )}
                   </div>
                 </div>
 
@@ -271,11 +283,10 @@ function Cart() {
                   {/*  onChange={(value) => updateQuantity(product.id, value)}*/}
                   {/*/>*/}
                   <Stepper
-                      value={product.quantity}
-                      min={1}
-                      onChange={(value) => updateQuantity(product.id, value)}
-                      style={{bottom: 0}}
-
+                    value={product.quantity}
+                    min={1}
+                    onChange={(value) => updateQuantity(product.id, value)}
+                    style={{ bottom: 0 }}
                   />
 
                 </div>
@@ -290,8 +301,8 @@ function Cart() {
           <Row>
             <Col span={2}>
               <Checkbox
-                  checked={selectAll}
-                  onChange={(e) => handleSelectAll(e.target.checked)}
+                checked={selectAll}
+                onChange={(e) => handleSelectAll(e.target.checked)}
               >
                 全选
               </Checkbox>
@@ -301,7 +312,7 @@ function Cart() {
 
                 {/*<div>已优惠：¥{calculateTotalAccount()} 元</div>*/}
                 {/*<div>已优惠：¥{discountTotal} 元</div> /!* 显示已优惠金额 *!/*/}
-                <div className='flex'>
+                <div className="flex">
                   <span style={{ color: "red" }}>已优惠 ¥{totalAccount}</span>
                   {/*<span*/}
                   {/*  style={{*/}
@@ -318,11 +329,11 @@ function Cart() {
                 <div>
                   <span style={{ color: "red" }}>券后合计：</span>
                   <span
-                      style={{
-                        color: "red",
-                        fontSize: "2em",
-                        fontWeight: "bold",
-                      }}
+                    style={{
+                      color: "red",
+                      fontSize: "2em",
+                      fontWeight: "bold",
+                    }}
                   >
                     {" "}
                     ¥{calculateTotalPrice()}

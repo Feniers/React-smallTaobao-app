@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Carousel, Button, Divider, Card } from "antd";
 import {
   LeftOutlined,
@@ -9,6 +9,7 @@ import {
 } from "@ant-design/icons";
 import "../css/detail.css";
 import { useNavigate, useParams } from "react-router-dom";
+import {ServiceContext} from "../contexts/ServiceContext";
 
 const contentStyle = {
   height: "160px",
@@ -21,6 +22,10 @@ const contentStyle = {
 
 const ProductDetail = () => {
   // 用来写方法和定义变量的地方
+  const { id } = useParams();
+  const { good: goodService} = useContext(ServiceContext);
+  const good = goodService.getGoodById(parseInt(id));
+
 
   const likeHandler = () => {
     console.log("like");
@@ -31,7 +36,7 @@ const ProductDetail = () => {
   };
 
   const purchase = () => {
-    navigate("/CreateOrder");
+    navigate(`/CreateOrder/${good.id}`);
     console.log("purchase");
   };
 
@@ -109,11 +114,11 @@ const ProductDetail = () => {
       <Card style={{ width: "90%", margin: "0 auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
-            销量：
+            销量：{good.sales}
           </div>
-          <div style={{ color: "rgba(0, 0, 0, 0.5)" }}>已售：</div>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)" }}>库存：{good.store}</div>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginRight: "10px" }}>
-            浏览量：
+            浏览量：22356
           </div>
         </div>
       </Card>
@@ -125,7 +130,7 @@ const ProductDetail = () => {
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             购买类型
           </div>
-          <div>填入</div>
+          <div>{good.categoryId}</div>
           <RightOutlined
             // onClick={}
             style={{ cursor: "pointer" }}
@@ -136,7 +141,7 @@ const ProductDetail = () => {
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             商品参数
           </div>
-          <div>填入</div>
+          <div>参数</div>
           <RightOutlined
             // onClick={}}
             style={{ cursor: "pointer" }}
@@ -195,8 +200,32 @@ const ProductDetail = () => {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button onClick={addCart}>加入购物车</Button>
-          <Button onClick={purchase}>购买</Button>
+          <Button
+            onClick={addCart}
+            style={{
+              background:
+                "linear-gradient(90deg, rgb(255, 203, 0), rgb(255, 148, 2))",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+              borderRadius: "20px 0px 0px 20px",
+            }}
+          >
+            加入购物车
+          </Button>
+          <Button
+            onClick={purchase}
+            style={{
+              background:
+                "linear-gradient(90deg, rgb(255, 119, 0), rgb(255, 73, 0))",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+              borderRadius: "0px 20px 20px 0px",
+            }}
+          >
+            立即购买
+          </Button>
         </div>
       </div>
     </div>
