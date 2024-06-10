@@ -11,6 +11,7 @@ import Pay from "../pages/Pay";
 import PaySuccess from "../pages/PaySuccess";
 import CreateOrder from "../pages/CreateOrder";
 import GoodList from "../pages/GoodList";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,8 @@ const router = createBrowserRouter([
       },
     ],
   }, //路径参数商品分类
+  { path: "/404", element: <ErrorPage /> },
+  { path: "*", element: <Navigate to="/404" /> },
 ]);
 
 export default router;

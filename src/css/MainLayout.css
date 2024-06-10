@@ -5,6 +5,14 @@
     margin: 0;
 }
 
+.main-layout {
+    height: 100%;
+}
+
+.main-content {
+    height: 100%;
+}
+
 .main-page .main-header {
     height: 52px;
 
