@@ -7,6 +7,8 @@ const defaultList = [
     payTime: "2018-01-01 00:00:00",
     status: 0, // 0,未支付 1已支付 2发货 3确认收货
     price: 100,
+    discount:30,
+    yunfei:20,
     goodId: [1, 2],
   },
 ];
