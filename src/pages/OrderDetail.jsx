@@ -1,21 +1,20 @@
-import React, {useContext, useEffect, useState} from "react";
-import { Card, Divider,Select } from "antd";
+import React, {useContext} from "react";
+import { Card, Divider } from "antd";
 import {
   LeftOutlined,
   DropboxOutlined,
 } from "@ant-design/icons";
 import {useNavigate, useParams} from "react-router-dom";
-import orderService from "../services/orderService";
 import {ServiceContext} from "../contexts/ServiceContext";
-const { Option } = Select;
+
 
 
 const OrderDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { order:orderService,user:userService } = useContext(ServiceContext);
+    const { order:orderService } = useContext(ServiceContext);
     const order = orderService.getOrderById(parseInt(id));
-    const user = userService.getUser();
+    // const user = userService.getUser();
     const getPaymentMethodName = (payMethod) => {
         switch (payMethod) {
             case 1:
@@ -25,10 +24,6 @@ const OrderDetail = () => {
             default:
                 return '未知支付方式';
         }
-    };
-    const [selectedAddress, setSelectedAddress] = useState(null);
-    const handleChange = (value) => {
-        setSelectedAddress(value);
     };
 
   return (
@@ -69,22 +64,6 @@ const OrderDetail = () => {
       </div>
       <Card>
         <div>地址信息</div>
-          <Select
-              style={{ width: '100%', marginTop: '10px' }}
-              placeholder="选择地址"
-              onChange={handleChange}
-          >
-              {user.addr.map((item, index) => (
-                  <Option key={index} value={item.address}>
-                      {item.name} - {item.address}
-                  </Option>
-              ))}
-          </Select>
-          {selectedAddress && (
-              <div style={{ marginTop: '10px' }}>
-                  地址: {selectedAddress}
-              </div>
-          )}
       </Card>
       <Card>
         <div>商品信息</div>

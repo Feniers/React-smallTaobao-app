@@ -168,8 +168,7 @@ function Cart() {
     };
 
     localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
-    let orderID = orderService.createOrder(checkoutData);
-    // navigate(`/orderdetail/${orderID}`);
+    navigate("/createOrder");
     console.log("结算", checkoutData);
   };
 

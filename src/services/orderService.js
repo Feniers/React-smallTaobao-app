@@ -10,7 +10,8 @@ const defaultList = [
     discount:30,
     shippingCost:20,
     goodId: [1, 2],
-    payMethod: 1
+    payMethod: 1,
+    address:"默认",
   },
 ];
 
@@ -71,7 +72,18 @@ class OrderService {
     }
     order.payMethod = value;
     order.status = 1;
+
     order.payTime = new Date().toLocaleString();
+    this._saveData();
+    return true;
+  }
+
+  setOrderAddress(orderId,address){
+    const order = this.getOrderById(orderId);
+    if (!order) {
+      return false;
+    }
+    order.address = address;
     this._saveData();
     return true;
   }

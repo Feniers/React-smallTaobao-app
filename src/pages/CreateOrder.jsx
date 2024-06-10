@@ -1,31 +1,43 @@
-import React, { useContext,useEffect,useState } from "react";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Button, Card, Divider } from "antd";
-import {useNavigate, useParams} from "react-router-dom";
-import {ServiceContext} from "../contexts/ServiceContext";
+import React, { useContext, useState } from "react";
+import { LeftOutlined } from "@ant-design/icons";
+import { Button, Card, Divider, Select, Row, Col } from "antd";
+import { useNavigate } from "react-router-dom";
+import { ServiceContext } from "../contexts/ServiceContext";
+
+const { Option } = Select;
 
 const CreateOrder = () => {
-  const { id } = useParams();
-  const { good: goodService,user:userService,order:orderService } = useContext(ServiceContext);
-  const good = goodService.getGoodById(parseInt(id));
-  const user = userService.getUser();
   const navigate = useNavigate();
-  const newOrder ={
-      userId: user.id,
-      price: good.price,
-      goodId: [good.id],//以后加多个
-      payTime: "2018-01-01 00:00:00"
-  }
-    const [order, setOrder] = useState({});
+  const {
+    good: goodService,
+    user: userService,
+    order: orderService,
+  } = useContext(ServiceContext);
 
-    useEffect(() => {
-        setOrder(orderService.createOrder(newOrder))
-        console.log(order);
-    }, []);
+  const user = userService.getUser();
+  const checkoutDataString = localStorage.getItem("checkoutData");
+  const checkoutData = JSON.parse(checkoutDataString);
+  
+  const goodList = checkoutData.selectedProducts.map((good) => goodService.getGoodById(good.id));
 
-  //if (!product) {
-      //return <div>商品未找到</div>;
-  //}
+  const newOrder = {
+    userId: user.id,
+    price: checkoutData.total,
+    goods: checkoutData.selectedProducts, //以后加多个
+    shippingCost: checkoutData.shippingCost,
+    payTime: "2018-01-01 00:00:00",
+  };
+
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const handleChange = (value) => {
+    setSelectedAddress(value);
+  };
+
+  const handleSubmitOrder = () => {
+    const id = orderService.CreateOrder(newOrder);
+    orderService.setOrderAddress(id, selectedAddress);
+    navigate(`/pay/${id}`);
+  };
 
   return (
     <div>
@@ -52,46 +64,69 @@ const CreateOrder = () => {
       </div>
 
       <Card style={{ marginTop: "35px" }}>
-          <div style={{display: "flex", justifyContent: "space-between"}}>
-              <div>收货地址</div>
-              {/*<div>{user.addr.address}</div>*/}
-              <RightOutlined/>
-          </div>
+        <Row gutter={16}>
+          <Col span={24}>
+            <div>收货地址</div>
+          </Col>
+          <Col span={24}>
+            <Select
+              style={{ width: "100%", marginTop: "10px" }}
+              placeholder="选择地址"
+              onChange={handleChange}
+            >
+              {user.addr.map((item, index) => (
+                <Option key={index} value={item.address}>
+                  {item.name} - {item.address}
+                </Option>
+              ))}
+            </Select>
+          </Col>
+          {selectedAddress && (
+            <Col span={24} style={{ marginTop: "10px" }}>
+              地址: {selectedAddress}
+            </Col>
+          )}
+        </Row>
       </Card>
-        <Card>
-            <div>商品信息</div>
-            {/*<div>{good.description}</div>*/}
-        </Card>
-        <Card>
+      <Card style={{ marginTop: "20px" }}>
+        <div>商品信息</div>
+        {goodList.map((good, index) => (
+          <div key={index}>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img
+                  src={good.img}
+                  alt=""
+                  style={{ width: "30px", height: "30px", marginRight: "15px" }}
+                />
+                <span style={{ fontSize: "20px" }}>{good.name}</span>
+              </div>
+              <div>{good.price}</div>
+            </div>
             <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+          </div>
+        ))}
+      </Card>
+      <Card style={{ marginTop: "20px" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             商品合计
           </div>
-            <div>
-                {order.price}
-            </div>
+          <div>{checkoutData.total}</div>
         </div>
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             运费
           </div>
-          <div>1919</div>
+          <div>{checkoutData.shippingCost}</div>
         </div>
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             活动优惠
           </div>
-          <div>-{good.discountPrice}</div>
-        </div>
-        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
-            优惠卷
-          </div>
-          <div>会有优惠卷的</div>
+          <div>{checkoutData.totalDiscount}</div>
         </div>
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -116,16 +151,10 @@ const CreateOrder = () => {
           borderTop: "1px solid #ccc",
         }}
       >
-        <div>合计：￥{order.price}</div>
+        <div>合计：￥{checkoutData.total}</div>
+        {/* 需要依次读取每个商品的价格来写 */}
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            onClick={() => {
-                navigate(`/pay/${order.id}`);
-                //orderService.payOrder(order.id);
-            }}
-          >
-            提交订单
-          </Button>
+          <Button onClick={handleSubmitOrder}>提交订单</Button>
         </div>
       </div>
     </div>

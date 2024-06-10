@@ -8,7 +8,7 @@ const Pay = () => {
   const [value, setValue] = useState(1);
   const navigate = useNavigate();
   const { id } = useParams();
-  const { good: goodService,order: orderService} = useContext(ServiceContext);
+  const {order: orderService} = useContext(ServiceContext);
   const order = orderService.getOrderById(parseInt(id));
 
   return (
