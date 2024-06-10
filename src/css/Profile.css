@@ -72,3 +72,19 @@
 
     border-bottom: 1px solid #ccc;
 }
+
+.dropdown-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: rgba(128, 128, 128, 0.301);
+}
+
+.dropdown-items p {
+    color: white;
+
+    margin: 5px 0;
+    padding: 2px;
+}
