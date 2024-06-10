@@ -61,8 +61,8 @@ function Cart() {
 
   // 更新总金额和优惠金额
   useEffect(() => {
-    const { totalAccount, couponsUsed } = calculateTotalAccount();
-    setTotalAccount(totalAccount);
+    const { totalDiscount, couponsUsed } = calculateTotalAccount();
+    setTotalAccount(totalDiscount);
     setTotalDiscount(couponsUsed);
     console.log("这是优惠数量");
     console.log(couponsUsed);
@@ -108,12 +108,12 @@ function Cart() {
     const couponsUsed = Math.min(coupons, maxCoupons); // 确保不使用超过持有的优惠券数量
     const discount = couponsUsed * 40; // 每张优惠券满300减40
     // 应用优惠
-    let totalAccount = discount + discountPrice;
+    let totalDiscount = discount + discountPrice;
 
     console.log("这是优惠数量");
     console.log(couponsUsed);
     return {
-      totalAccount, // 总优惠金额
+      totalDiscount, // 总优惠金额
       couponsUsed, // 使用的优惠券数量
     };
   };
@@ -156,15 +156,19 @@ function Cart() {
       .map((product) => ({
         id: product.id,
         quantity: product.quantity,
+        discount:product.discountPrice//注意这是一个商品的价格
       }));
 
 
     const total = calculateTotalPrice(); // 计算总价格
+    const { totalAccount, couponsUsed } = calculateTotalAccount();//总优惠金额和满减券使用数量
 
     const checkoutData = {
       selectedProducts,
       total,
       shippingCost:20,
+      totalAccount,
+      couponsUsed
     };
 
     localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
