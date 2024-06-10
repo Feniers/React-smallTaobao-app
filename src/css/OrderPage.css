@@ -1,0 +1,44 @@
+.order-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.order-header {
+    height: 52px;
+    background-color: #f4846b;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-list {
+    height: 100%;
+    width: 100%;
+}
+
+.order-good {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 10px;
+    border-bottom: 1px solid #dadada;
+}
+
+.order-good-info {
+    width: 60%;
+}
+
+.order-good-img {
+    max-width: 60%;
+}
+
+.order-price {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}

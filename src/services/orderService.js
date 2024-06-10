@@ -7,10 +7,45 @@ const defaultList = [
     payTime: "2018-01-01 00:00:00",
     status: 0, // 0,未支付 1已支付 2发货 3确认收货
     price: 100,
-    discount:30,
-    shippingCost:20,
-    goodId: [1, 2],
-    payMethod: 1
+    discount: 30,
+    shippingCost: 20,
+    goods: [
+      {
+        id: 1,
+        quantity: 2,
+      },
+    ],
+    payMethod: 1,
+    address: {
+      name: "dyh",
+      address: "beijing",
+    },
+  },
+  {
+    id: 2,
+    userId: 1,
+    orderNo: "201801010002",
+    createTime: "2018-01-01 00:00:00",
+    payTime: "2018-01-01 00:00:00",
+    status: 1,
+    price: 200,
+    discount: 50,
+    shippingCost: 20,
+    goods: [
+      {
+        id: 1,
+        quantity: 2,
+      },
+      {
+        id: 2,
+        quantity: 1,
+      },
+    ],
+    payMethod: 1,
+    address: {
+      name: "dyh",
+      address: "beijing",
+    },
   },
 ];
 
@@ -57,27 +92,46 @@ class OrderService {
       orderNo,
       createTime: new Date().toLocaleString(),
       status: 0,
-      payMethod: 1
+      payMethod: 1,
     };
     this.list.push(order);
     this._saveData();
-    return maxId+1;
+    return maxId + 1;
   }
 
-  payOrder(orderId,value) {
+  payOrder(orderId, value) {
+    console.log("payOrder", orderId, value);
+    console.log(this.list);
     const order = this.getOrderById(orderId);
     if (!order) {
       return false;
     }
     order.payMethod = value;
     order.status = 1;
+    console.log(value);
     order.payTime = new Date().toLocaleString();
     this._saveData();
     return true;
   }
 
+  setOrderAddress(orderId, address) {
+    const order = this.getOrderById(orderId);
+    if (!order) {
+      return false;
+    }
+    order.address = address;
+    this._saveData();
+    return true;
+  }
+
   getOrderById(orderId) {
-    return this.list.find((item) => item.id === orderId);
+    console.log("getOrderById", this.list, orderId);
+    const id = parseInt(orderId);
+    return this.list.find((item) => item.id === id);
+  }
+
+  getOrderList() {
+    return this.list;
   }
 
   // 将数据存入到localstorage中

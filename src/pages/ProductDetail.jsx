@@ -1,31 +1,32 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Carousel, Button, Divider, Card } from "antd";
 import {
-  LeftOutlined,
-  HomeOutlined,
-  ShoppingCartOutlined,
-  HeartTwoTone,
-  RightOutlined,
+    LeftOutlined,
+    HomeOutlined,
+    ShoppingCartOutlined,
+    HeartTwoTone,
+    RightOutlined,
+    CheckOutlined,
+    SafetyCertificateOutlined,
 } from "@ant-design/icons";
 import "../css/detail.css";
 import { useNavigate, useParams } from "react-router-dom";
-import {ServiceContext} from "../contexts/ServiceContext";
+import { ServiceContext } from "../contexts/ServiceContext";
 
 const contentStyle = {
   height: "160px",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
-  background: "#ffffff",
+  background: "#F5F5F5",
   borderRadius: "10px 10px 0 0",
 };
 
 const ProductDetail = () => {
   // 用来写方法和定义变量的地方
   const { id } = useParams();
-  const { good: goodService} = useContext(ServiceContext);
+  const { good: goodService } = useContext(ServiceContext);
   const good = goodService.getGoodById(parseInt(id));
-
 
   const likeHandler = () => {
     console.log("like");
@@ -36,8 +37,28 @@ const ProductDetail = () => {
   };
 
   const purchase = () => {
-    navigate(`/CreateOrder/${good.id}`);
-    console.log("purchase");
+    const selectedProduct = [
+      {
+        id: good.id,
+        quantity: 1,
+        discount: good.discountPrice,
+      },
+    ];
+
+    const total = good.price;
+    const totalDiscount = good.discountPrice;
+    const shippingCost = 20;
+
+    const checkoutData = {
+      selectedProducts: selectedProduct,
+      total,
+      totalDiscount,
+      shippingCost,
+    };
+
+    // 将订单数据保存到 localStorage
+    localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
+    navigate(`/CreateOrder`);
   };
 
   // 页面
@@ -48,7 +69,6 @@ const ProductDetail = () => {
   console.log(params);
 
   return (
-    // 顶部栏
     <div
       className="page"
       style={{
@@ -58,6 +78,7 @@ const ProductDetail = () => {
         color: "#000",
       }}
     >
+      {/* 顶部栏 */}
       <div
         className="head"
         style={{
@@ -68,6 +89,8 @@ const ProductDetail = () => {
           position: "fixed",
           borderBottom: "1px solid #ccc",
           color: "#000",
+          width: "100%",
+          
         }}
       >
         <LeftOutlined
@@ -88,30 +111,56 @@ const ProductDetail = () => {
             marginTop: "30px",
           }}
         >
-          <img
-            src="https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg"
-            alt="img"
-            style={contentStyle}
-          />
-          <img
-            src="https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg"
-            alt="img"
-            style={contentStyle}
-          />
-          <img
-            src="https://news.bjtu.edu.cn/images/16/07/18/1tmvx4g0yo/IMG_6830.jpg"
-            alt="img"
-            style={contentStyle}
-          />
+          <img src={good.img} alt="img" style={contentStyle} />
         </Carousel>
       </div>
 
-      {/* 产品名 */}
-      <h2>产品名</h2>
-      <Divider style={{ borderTop: "1px solid #f0f0f0", marginTop: "10px" }} />
+          {/* 产品名 */}
+          <div style={{marginLeft: "8px"}}>
+          <span style={{color: "red"}}>
+              ￥
+          </span>
+              <span style={{color: "red", fontSize: "3em",}}
+              >
+              {good.price}
+      </span>
+          </div>
+
+          <h2 style={{width: "90%", margin: "0 auto"}}>{good.name}</h2>
+          <div style={{width: "90%", margin: "0 auto"}}>{good.description}</div>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid #e0e0e0',
+                padding: '5px 1px',
+                borderRadius: '3px',
+                width: '100px',
+                marginLeft: "18px"
+            }}>
+                <span style={{color: '#FA8072', fontSize: '12px'}}>多人评价良好</span>
+            </div>
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid #e0e0e0',
+                padding: '5px 1px',
+                borderRadius: '3px',
+                width: '100px',
+                marginLeft: "18px"
+            }}>
+                <SafetyCertificateOutlined style={{color: '#4caf50', marginRight: '5px'}}/>
+                <span style={{color: '#4caf50', fontSize: '12px'}}>退货运费险</span>
+            </div>
+
+        </div>
+
+        <Divider style={{borderTop: "1px solid #f0f0f0", marginTop: "10px"}}/>
 
       {/* 关于销售量和浏览量的卡片 */}
-      <Card style={{ width: "90%", margin: "0 auto" }}>
+      <Card  style={{ width: "90%", margin: "0 auto",boxShadow:"0 4px 8px rgba(0, 0, 0, 0.3)"  }} >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             销量：{good.sales}
@@ -124,13 +173,12 @@ const ProductDetail = () => {
       </Card>
 
       {/* 产品信息参数选择 */}
-      <Card style={{ width: "90%", margin: "0 auto" }}>
-        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+      <Card  style={{ width: "90%", margin: "20px auto 0 auto",boxShadow:"0 4px 8px rgba(0, 0, 0, 0.3)" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
-            购买类型
+            商店名称
           </div>
-          <div>{good.categoryId}</div>
+          <div>{good.merchant}</div>
           <RightOutlined
             // onClick={}
             style={{ cursor: "pointer" }}
@@ -141,7 +189,7 @@ const ProductDetail = () => {
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             商品参数
           </div>
-          <div>参数</div>
+          <div>查看</div>
           <RightOutlined
             // onClick={}}
             style={{ cursor: "pointer" }}
@@ -150,15 +198,14 @@ const ProductDetail = () => {
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
-            优惠卷
+            商品优惠
           </div>
-          <div>填入</div>
+          <div>{good.discountPrice}</div>
           <RightOutlined
             // onClick={}
             style={{ cursor: "pointer" }}
           />
         </div>
-        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
       </Card>
 
       {/* 底边栏 */}
@@ -166,7 +213,10 @@ const ProductDetail = () => {
         style={{
           position: "fixed",
           bottom: 0,
-          width: "100%",
+          left: 0,
+          right: 0,
+          margin: "0 auto",
+          width: "90%",
           backgroundColor: "#fff",
           padding: "5px",
           display: "flex",

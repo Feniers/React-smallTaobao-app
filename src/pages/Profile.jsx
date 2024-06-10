@@ -59,25 +59,25 @@ const orderItems = [
   {
     key: 1,
     label: "全部订单",
-    path: "/404",
+    path: "/order",
     icon: <AccountBookOutlined />,
   },
   {
     key: 2,
     label: "待付款",
-    path: "/404",
+    path: "/order/0",
     icon: <MoneyCollectOutlined />,
   },
   {
     key: 3,
     label: "待收货",
-    path: "/404",
+    path: "/order/2",
     icon: <ShoppingOutlined />,
   },
   {
     key: 4,
     label: "退款/售后",
-    path: "/404",
+    path: "/order/4",
     icon: <HistoryOutlined />,
   },
 ];
