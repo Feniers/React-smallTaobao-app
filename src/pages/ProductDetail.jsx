@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Carousel, Button, Divider, Card } from "antd";
 import {
   LeftOutlined,
@@ -9,23 +9,22 @@ import {
 } from "@ant-design/icons";
 import "../css/detail.css";
 import { useNavigate, useParams } from "react-router-dom";
-import {ServiceContext} from "../contexts/ServiceContext";
+import { ServiceContext } from "../contexts/ServiceContext";
 
 const contentStyle = {
   height: "160px",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
-  background: "#ffffff",
+  background: "#F5F5F5",
   borderRadius: "10px 10px 0 0",
 };
 
 const ProductDetail = () => {
   // 用来写方法和定义变量的地方
   const { id } = useParams();
-  const { good: goodService} = useContext(ServiceContext);
+  const { good: goodService } = useContext(ServiceContext);
   const good = goodService.getGoodById(parseInt(id));
-
 
   const likeHandler = () => {
     console.log("like");
@@ -38,23 +37,23 @@ const ProductDetail = () => {
   const purchase = () => {
     const selectedProduct = [
       {
-        id: good.id, 
+        id: good.id,
         quantity: 1,
         discount: good.discountPrice,
-      }
+      },
     ];
-  
+
     const total = good.price;
     const totalDiscount = good.discountPrice;
-    const shippingCost = 20; 
-  
+    const shippingCost = 20;
+
     const checkoutData = {
       selectedProducts: selectedProduct,
       total,
       totalDiscount,
       shippingCost,
     };
-  
+
     // 将订单数据保存到 localStorage
     localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
     navigate(`/CreateOrder`);
@@ -68,7 +67,6 @@ const ProductDetail = () => {
   console.log(params);
 
   return (
-    // 顶部栏
     <div
       className="page"
       style={{
@@ -78,6 +76,7 @@ const ProductDetail = () => {
         color: "#000",
       }}
     >
+      {/* 顶部栏 */}
       <div
         className="head"
         style={{
@@ -88,6 +87,8 @@ const ProductDetail = () => {
           position: "fixed",
           borderBottom: "1px solid #ccc",
           color: "#000",
+          width: "100%",
+          
         }}
       >
         <LeftOutlined
@@ -108,11 +109,7 @@ const ProductDetail = () => {
             marginTop: "30px",
           }}
         >
-          <img
-            src={good.img}
-            alt="img"
-            style={contentStyle}
-          />
+          <img src={good.img} alt="img" style={contentStyle} />
         </Carousel>
       </div>
 
@@ -122,7 +119,7 @@ const ProductDetail = () => {
       <Divider style={{ borderTop: "1px solid #f0f0f0", marginTop: "10px" }} />
 
       {/* 关于销售量和浏览量的卡片 */}
-      <Card style={{ width: "90%", margin: "0 auto" }}>
+      <Card  style={{ width: "90%", margin: "0 auto",boxShadow:"0 4px 8px rgba(0, 0, 0, 0.3)"  }} >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             销量：{good.sales}
@@ -135,7 +132,7 @@ const ProductDetail = () => {
       </Card>
 
       {/* 产品信息参数选择 */}
-      <Card style={{ width: "90%", margin: "20px auto 0 auto" }}>
+      <Card  style={{ width: "90%", margin: "20px auto 0 auto",boxShadow:"0 4px 8px rgba(0, 0, 0, 0.3)" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             商店名称
@@ -168,7 +165,6 @@ const ProductDetail = () => {
             style={{ cursor: "pointer" }}
           />
         </div>
-        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
       </Card>
 
       {/* 底边栏 */}
@@ -176,7 +172,10 @@ const ProductDetail = () => {
         style={{
           position: "fixed",
           bottom: 0,
-          width: "100%",
+          left: 0,
+          right: 0,
+          margin: "0 auto",
+          width: "90%",
           backgroundColor: "#fff",
           padding: "5px",
           display: "flex",

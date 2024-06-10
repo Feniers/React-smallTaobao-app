@@ -22,7 +22,7 @@ const CreateOrder = () => {
     goodService.getGoodById(good.id)
   );
 
-  const [addr, setAddr] = useState(null);
+  const [addr, setAddr] = useState(user.addr[0]);
 
   const totalPrice = (
     checkoutData.total -
@@ -39,7 +39,7 @@ const CreateOrder = () => {
     discount: checkoutData.totalDiscount,
   };
 
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState(user.addr[0].address);
   const handleChange = (value) => {
     setSelectedAddress(value);
     const selectedAddr = user.addr.find((item) => item.address === value);
@@ -53,7 +53,8 @@ const CreateOrder = () => {
   };
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#F5F5F5" }}>
+      {/* 顶栏 */}
       <div
         style={{
           display: "flex",
@@ -64,19 +65,26 @@ const CreateOrder = () => {
           borderBottom: "1px solid #ccc",
           zIndex: 100,
           backgroundColor: "#fff",
+          width: "100%",
         }}
       >
-        <div style={{ width: "170px" }}>
+        <div >
           <LeftOutlined
             onClick={() => navigate(-1)}
             style={{ cursor: "pointer" }}
           />
         </div>
         <div style={{ flex: 1, textAlign: "center" }}>创建订单</div>
-        <div style={{ width: "100px" }}></div>
+        <div></div>
       </div>
 
-      <Card style={{ marginTop: "35px" }}>
+      <Card
+        style={{
+          width: "95%",
+          margin: "50px auto 0 auto",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+        }}
+      >
         <Row gutter={16}>
           <Col span={24}>
             <div>收货地址</div>
@@ -101,7 +109,13 @@ const CreateOrder = () => {
           )}
         </Row>
       </Card>
-      <Card>
+      <Card
+        style={{
+          width: "95%",
+          margin: "10px auto 0 auto",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+        }}
+      >
         <div>商品信息</div>
         {goodList.map((good, index) => (
           <div key={index}>
@@ -122,7 +136,13 @@ const CreateOrder = () => {
           </div>
         ))}
       </Card>
-      <Card style={{ marginTop: "20px" }}>
+      <Card
+        style={{
+          width: "95%",
+          margin: "10px auto 0 auto",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+        }}
+      >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             商品合计
@@ -157,7 +177,6 @@ const CreateOrder = () => {
           </div>
           <div>这是一个备注</div>
         </div>
-        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
       </Card>
 
       <div

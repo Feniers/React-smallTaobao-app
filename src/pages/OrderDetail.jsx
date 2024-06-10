@@ -48,12 +48,20 @@ const OrderDetail = () => {
         <DropboxOutlined style={{ marginLeft: "10px" }} />
         等待发货
       </div>
-      <Card>
+      <Card style={{
+          width: "95%",
+          margin: "10px auto 0 auto",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+        }}>
         <div>收货信息</div>
         <div>姓名：{order.address.name}</div>
         <div>地址：{order.address.address}</div>
       </Card>
-      <Card>
+      <Card style={{
+          width: "95%",
+          margin: "10px auto 0 auto",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+        }}>
         <div>商品信息</div>
         {goodList.map((good, index) => (
           <div key={index}>
@@ -74,7 +82,11 @@ const OrderDetail = () => {
           </div>
         ))}
       </Card>
-      <Card>
+      <Card style={{
+          width: "95%",
+          margin: "10px auto 0 auto",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+        }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             商品合计
@@ -102,10 +114,13 @@ const OrderDetail = () => {
           </div>
           <div>填入</div>
         </div>
-        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
       </Card>
 
-      <Card>
+      <Card style={{
+          width: "95%",
+          margin: "10px auto 0 auto",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+        }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             订单编号

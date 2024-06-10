@@ -19,6 +19,7 @@ const Pay = () => {
           justifyContent: "space-between",
           padding: "10px",
           borderBottom: "1px solid #ccc",
+          width: "100%",
         }}
       >
         <LeftOutlined
@@ -38,7 +39,7 @@ const Pay = () => {
         <h2>支付金额</h2>
         <div>{order.price}</div>
         <Radio.Group onChange={(e) => setValue(e.target.value)} value={value}>
-          <Card style={{ backgroundColor: "你的颜色", width: "350px" }}>
+          <Card style={{ marginTop:"10px",backgroundColor: "你的颜色", width: "350px",boxShadow:"0 4px 8px rgba(0, 0, 0, 0.3)" }}>
             <div
               style={{
                 marginBottom: "10px",
@@ -77,6 +78,7 @@ const Pay = () => {
               fontSize: "20px",
               backgroundColor: "#F94167",
               color: "#fff",
+              marginTop: "20px",
             }}
             onClick={() => {
               orderService.payOrder(id, value);
