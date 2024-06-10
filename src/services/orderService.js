@@ -7,7 +7,10 @@ const defaultList = [
     payTime: "2018-01-01 00:00:00",
     status: 0, // 0,未支付 1已支付 2发货 3确认收货
     price: 100,
+    discount:30,
+    shippingCost:20,
     goodId: [1, 2],
+    payMethod: 1
   },
 ];
 
@@ -54,18 +57,19 @@ class OrderService {
       orderNo,
       createTime: new Date().toLocaleString(),
       status: 0,
+      payMethod: 1
     };
     this.list.push(order);
     this._saveData();
-    return order;
+    return maxId+1;
   }
 
-  payOrder(orderId) {
+  payOrder(orderId,value) {
     const order = this.getOrderById(orderId);
     if (!order) {
       return false;
     }
-
+    order.payMethod = value;
     order.status = 1;
     order.payTime = new Date().toLocaleString();
     this._saveData();

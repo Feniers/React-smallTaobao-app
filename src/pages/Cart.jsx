@@ -1,16 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
-import { MessageOutlined, ScanOutlined } from "@ant-design/icons";
-import { Button, Card, Checkbox, Col, InputNumber, Row } from "antd";
+import { ShopFilled} from "@ant-design/icons";
+import { Button, Card, Checkbox, Col, Row } from "antd";
 import "../css/Cart.css";
 import { ServiceContext } from "../contexts/ServiceContext";
 import { Typography } from "antd";
+import MainHeader from "../components/MainHeader";
+// import Icon from "antd/es/icon";
+import { Stepper} from 'antd-mobile'
+import {useNavigate} from "react-router-dom";
+// import { DemoBlock } from 'demos'
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 function Cart() {
+  const navigate = useNavigate();
   //结构函数
   const { good: goodService } = useContext(ServiceContext);
   const { user: userService } = useContext(ServiceContext);
+  const { order: orderService } = useContext(ServiceContext);
   const user = userService.getUser();
   console.log("user", user);
   const cart = userService.getCart();
@@ -59,7 +66,7 @@ function Cart() {
     setTotalDiscount(couponsUsed);
     console.log("这是优惠数量");
     console.log(couponsUsed);
-  }, [products, user.coupon]); // 在products或user.coupon变化时更新
+  }, [products]); // 在products或user.coupon变化时更新
   const calculateTotalPrice = () => {
     // 首先计算选中商品的总价
     let total = products.reduce((acc, product) => {
@@ -151,46 +158,54 @@ function Cart() {
         quantity: product.quantity,
       }));
 
+
     const total = calculateTotalPrice(); // 计算总价格
 
     const checkoutData = {
       selectedProducts,
       total,
+      shippingCost:20,
     };
 
     localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
-
+    let orderID = orderService.createOrder(checkoutData);
+    // navigate(`/orderdetail/${orderID}`);
     console.log("结算", checkoutData);
   };
 
   return (
     <div className="flex">
-      <div className="Header">
-        <ScanOutlined />
-        <div className="SearchBox">
-          <input type="text" placeholder=" 请输入商品 如：手机" />
-        </div>
-        <MessageOutlined />
-      </div>
-      <div></div>
+      <MainHeader />
+      {/*<div className="Header">*/}
+      {/*  <ScanOutlined />*/}
+      {/*  <div className="SearchBox">*/}
+      {/*    <input type="text" placeholder=" 请输入商品 如：手机" />*/}
+      {/*  </div>*/}
+      {/*  <MessageOutlined />*/}
+      {/*</div>*/}
       <div className="cartContent">
         {products.map((product) => (
           <Card
             key={product.id}
-            title={product.title}
-            extra={<a href={`/product/${product.id}`}>查看详情</a>}
+            title={
+              <>
+                <ShopFilled style={{ marginRight: 8 ,color: '#CB573C' }} />
+
+                {product.merchant}
+              </>
+            }
+            extra={<a href={`/product/${product.id}`} style={{ color: '#CB573C' }}>查看详情</a>}
             className="cartItem"
           >
-            <Row style={{ height: "100%", paddingTop: "3px" }}>
-              <Col span={3}>
+            <Row style={{ height: "100%",width:"100%"}}>
+              <Col span={2}>
                 <Checkbox
                   checked={product.checked}
                   onChange={() => toggleCheck(product.id)}
                 >
-                  选择
                 </Checkbox>
               </Col>
-              <Col span={8}>
+              <Col span={9}>
                 <img
                   src={product.img}
                   alt={product.name}
@@ -199,15 +214,21 @@ function Cart() {
               </Col>
               <Col span={13}>
                 <div className="flex">
-                  <Title level={3}>{product.name}</Title>
-                  <p>{product.description}</p>
-                  <Text mark>官方立减{product.discountPrice}元</Text>
+
+                  <Text strong style={{ fontSize: '20px' }}>{product.name}</Text>
+                  <Text >{product.description}</Text>
+                  <div>
+
+                    {/*<p>{product.name}</p>*/}
+                    <Text mark style={{ display: 'inline-block' }}>七天无理由退货</Text>
+                    <Text keyboard style={{ display: 'inline-block', color: '#CB573C' }}> 官方立减{product.discountPrice}元</Text>
+                  </div>
                   <div>
                     <span style={{ color: "red" }}>￥</span>
                     <span
                       style={{
                         color: "red",
-                        fontSize: "2em",
+                        fontSize: "1em",
                         fontWeight: "bold",
                         textDecoration: product.checked
                           ? "line-through"
@@ -222,33 +243,37 @@ function Cart() {
                         ? "." + product.price.toString().split(".")[1]
                         : " "}
                     </span>
+                    <br />
                     {product.checked && (
                       <Text
                         style={{
                           marginLeft: 12,
                           color: "red",
-                          fontSize: "2.3em",
+                          fontSize: "1.3em",
                           fontWeight: "bold",
                         }}
                       >
                         ￥{(product.price - product.discountPrice).toFixed(2)}
-                      </Text>
-                    )}
+                      </Text>)}
+
                   </div>
                 </div>
 
-                <div style={{ position: "absolute", right: 10, bottom: 0 }}>
-                  <InputNumber
-                    min={1}
-                    style={{ opacity: 0 }}
-                    value={product.quantity}
-                    onChange={(value) => updateQuantity(product.id, value)}
+                <div style={{ position: "absolute", right: 0, bottom: 0 }}>
+                  {/*<InputNumber*/}
+                  {/*  min={1}*/}
+                  {/*  style={{ opacity: 0 }}*/}
+                  {/*  value={product.quantity}*/}
+                  {/*  onChange={(value) => updateQuantity(product.id, value)}*/}
+                  {/*/>*/}
+                  <Stepper
+                      value={product.quantity}
+                      min={1}
+                      onChange={(value) => updateQuantity(product.id, value)}
+                      style={{bottom: 0}}
+
                   />
-                  <InputNumber
-                    min={1}
-                    value={product.quantity}
-                    onChange={(value) => updateQuantity(product.id, value)}
-                  />
+
                 </div>
               </Col>
             </Row>
@@ -257,55 +282,58 @@ function Cart() {
       </div>
 
       <div className="footer">
-        <Checkbox
-          checked={selectAll}
-          onChange={(e) => handleSelectAll(e.target.checked)}
-        >
-          全选
-        </Checkbox>
         <div>
           <Row>
-            <Col span={12}>
+            <Col span={2}>
+              <Checkbox
+                  checked={selectAll}
+                  onChange={(e) => handleSelectAll(e.target.checked)}
+              >
+                全选
+              </Checkbox>
+            </Col>
+            <Col span={16}>
               <div className="vertical-center">
+
+                {/*<div>已优惠：¥{calculateTotalAccount()} 元</div>*/}
+                {/*<div>已优惠：¥{discountTotal} 元</div> /!* 显示已优惠金额 *!/*/}
+                <div className='flex'>
+                  <span style={{ color: "red" }}>已优惠 ¥{totalAccount}</span>
+                  {/*<span*/}
+                  {/*  style={{*/}
+                  {/*    color: "red",*/}
+                  {/*    fontSize: "1em",*/}
+                  {/*    fontWeight: "bold",*/}
+                  {/*  }}*/}
+                  {/*>*/}
+                  {/*  {" "}*/}
+                  {/*  ¥{totalAccount}*/}
+                  {/*</span>*/}
+                  <div>满减券：{totalDiscount} 张</div>
+                </div>
                 <div>
                   <span style={{ color: "red" }}>券后合计：</span>
                   <span
-                    style={{
-                      color: "red",
-                      fontSize: "2em",
-                      fontWeight: "bold",
-                    }}
+                      style={{
+                        color: "red",
+                        fontSize: "2em",
+                        fontWeight: "bold",
+                      }}
                   >
                     {" "}
                     ¥{calculateTotalPrice()}
                   </span>{" "}
                 </div>
-                {/*<div>已优惠：¥{calculateTotalAccount()} 元</div>*/}
-                {/*<div>已优惠：¥{discountTotal} 元</div> /!* 显示已优惠金额 *!/*/}
-                <div>
-                  <span style={{ color: "red" }}>已优惠</span>
-                  <span
-                    style={{
-                      color: "red",
-                      fontSize: "2em",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {" "}
-                    ¥{totalAccount}
-                  </span>
-                </div>
-                <div>使用满减券：{totalDiscount} 张</div>
               </div>
             </Col>
-            <Col span={12}>
+            <Col span={6}>
               <Button
                 className="vertical-center2"
                 type="primary"
                 disabled={selectedCount === 0}
                 onClick={handleCheckout}
               >
-                去结算 ({selectedCount} 项)
+                结算 ({selectedCount} 项)
               </Button>
             </Col>
           </Row>

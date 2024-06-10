@@ -18,38 +18,48 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	gap: 0px; /* 设置元素之间的距离 */
 }
 
 .cartContent{
 	width: 100%;
 	margin-top: 80px; /* 如果需要独立的顶部边距，请保留这行 */
-	margin-right: 10px;
-	margin-bottom: 10px;
-	margin-left: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+
+	/*margin-right: 10px;*/
+	/*margin-bottom: 10px;*/
+	/*margin-left: 10px;*/
 }
 
 .cartItem{
-	width: 100%;
-	height: 300px;
+	/*width: 100%;*/
+	height: 250px;
 	margin-top: 10px;
+	/*margin-right: 10px;*/
+	/*margin-left: 10px;*/
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 添加外框阴影 */
+
 
 }
 
 .footer {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;  /* 如果你想要它们在垂直方向上也居中对齐 */
+	align-items: center;  /* 在垂直方向上也居中对齐 */
 
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	width: 100%;
+	width: 430px;
 	background-color: #f8f9fa; /* 浅灰色背景 */
-	padding: 10px 40px; /* 上下填充 */
+	/*padding: 10px 40px; !* 上下填充 *!*/
 	margin-bottom: 50px;
 	text-align: center; /* 文字居中 */
 	border-top: 1px solid #e7e7e7; /* 顶部边框线 */
 	height: 80px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 .vertical-center {
 	display: flex;
@@ -61,8 +71,10 @@
 	display: flex;
 	align-items: center;  /* 垂直居中 */
 	justify-content: center;  /* 水平居中，根据需要添加 */
-	height: 120%;  /* 确保列的高度足够使内容居中 */
+	height: 100%;  /* 确保列的高度足够使内容居中 */
 	background-color: #CB573C;
+	margin-right: 2px;
+	margin-left: 2px;
 }
 .image-container {
 	width: 100%; /* 容器宽度为100%，你可以根据需要调整 */
@@ -80,7 +92,7 @@
 	object-fit: cover; /* 确保图片填充整个容器但不变形 */
 }
 .img-resize {
-	width: 200px; /* 或其他固定宽度，例如 200px */
-	height: 200px; /* 保持2:3比例 */
+	width: 130px; /* 或其他固定宽度，例如 200px */
+	height: 130px; /* 保持2:3比例 */
 	object-fit: cover;
 }
