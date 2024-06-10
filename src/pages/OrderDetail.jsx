@@ -1,30 +1,16 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { Card, Divider } from "antd";
-import {
-  LeftOutlined,
-  DropboxOutlined,
-} from "@ant-design/icons";
-import {useNavigate, useParams} from "react-router-dom";
-import {ServiceContext} from "../contexts/ServiceContext";
-
-
+import { LeftOutlined, DropboxOutlined } from "@ant-design/icons";
+import { useNavigate, useParams } from "react-router-dom";
+import { ServiceContext } from "../contexts/ServiceContext";
 
 const OrderDetail = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const { order:orderService } = useContext(ServiceContext);
-    const order = orderService.getOrderById(parseInt(id));
-    // const user = userService.getUser();
-    const getPaymentMethodName = (payMethod) => {
-        switch (payMethod) {
-            case 1:
-                return '微信支付';
-            case 2:
-                return '支付宝支付';
-            default:
-                return '未知支付方式';
-        }
-    };
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { order: orderService, good: goodService } = useContext(ServiceContext);
+  const order = orderService.getOrderById(parseInt(id));
+
+  const goodList = order.goods.map((good) => goodService.getGoodById(good.id));
 
   return (
     <div>
@@ -63,10 +49,30 @@ const OrderDetail = () => {
         等待发货
       </div>
       <Card>
-        <div>地址信息</div>
+        <div>收货信息</div>
+        <div>姓名：{order.address.name}</div>
+        <div>地址：{order.address.address}</div>
       </Card>
       <Card>
         <div>商品信息</div>
+        {goodList.map((good, index) => (
+          <div key={index}>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img
+                  src={good.img}
+                  alt=""
+                  style={{ width: "30px", height: "30px", marginRight: "15px" }}
+                />
+                <span style={{ fontSize: "20px" }}>{good.name}</span>
+              </div>
+              <div>{good.price}</div>
+            </div>
+            {index !== goodList.length - 1 && (
+              <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+            )}
+          </div>
+        ))}
       </Card>
       <Card>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -80,21 +86,14 @@ const OrderDetail = () => {
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             运费
           </div>
-          <div>1919</div>
+          <div>{order.shippingCost}</div>
         </div>
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             活动优惠
           </div>
-          <div>填入</div>
-        </div>
-        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
-            优惠卷
-          </div>
-          <div>填入</div>
+          <div>{order.discount}</div>
         </div>
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -111,25 +110,25 @@ const OrderDetail = () => {
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             订单编号
           </div>
-          <div>{order.id}</div>
+          <div>{order.orderNo}</div>
         </div>
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             提交时间
           </div>
-          <div>{order.createTime}</div>
+          <div>{order.payTime}</div>
         </div>
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
             支付方式
           </div>
-          <div>{getPaymentMethodName(order.payMethod)}</div>
+          <div>{order.payMethod === 1 ? "微信支付" : "支付宝支付"}</div>
         </div>
       </Card>
     </div>
   );
-}
+};
 
 export default OrderDetail;

@@ -17,25 +17,38 @@ const CreateOrder = () => {
   const user = userService.getUser();
   const checkoutDataString = localStorage.getItem("checkoutData");
   const checkoutData = JSON.parse(checkoutDataString);
-  
-  const goodList = checkoutData.selectedProducts.map((good) => goodService.getGoodById(good.id));
+
+  const goodList = checkoutData.selectedProducts.map((good) =>
+    goodService.getGoodById(good.id)
+  );
+
+  const [addr, setAddr] = useState(null);
+
+  const totalPrice = (
+    checkoutData.total -
+    checkoutData.totalDiscount -
+    checkoutData.shippingCost
+  ).toFixed(2);
 
   const newOrder = {
     userId: user.id,
-    price: checkoutData.total,
+    price: totalPrice,
     goods: checkoutData.selectedProducts, //以后加多个
     shippingCost: checkoutData.shippingCost,
     payTime: "2018-01-01 00:00:00",
+    discount: checkoutData.totalDiscount,
   };
 
   const [selectedAddress, setSelectedAddress] = useState(null);
   const handleChange = (value) => {
     setSelectedAddress(value);
+    const selectedAddr = user.addr.find((item) => item.address === value);
+    setAddr(selectedAddr);
   };
 
   const handleSubmitOrder = () => {
-    const id = orderService.CreateOrder(newOrder);
-    orderService.setOrderAddress(id, selectedAddress);
+    const id = orderService.createOrder(newOrder);
+    orderService.setOrderAddress(id, addr);
     navigate(`/pay/${id}`);
   };
 
@@ -88,7 +101,7 @@ const CreateOrder = () => {
           )}
         </Row>
       </Card>
-      <Card style={{ marginTop: "20px" }}>
+      <Card>
         <div>商品信息</div>
         {goodList.map((good, index) => (
           <div key={index}>
@@ -103,7 +116,9 @@ const CreateOrder = () => {
               </div>
               <div>{good.price}</div>
             </div>
-            <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+            {index !== goodList.length - 1 && (
+              <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+            )}
           </div>
         ))}
       </Card>
@@ -124,9 +139,16 @@ const CreateOrder = () => {
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
-            活动优惠
+            总优惠
           </div>
           <div>{checkoutData.totalDiscount}</div>
+        </div>
+        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
+            优惠卷
+          </div>
+          <div>{checkoutData.couponsUsed === 1 ? "已使用" : "无"}</div>
         </div>
         <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -151,7 +173,10 @@ const CreateOrder = () => {
           borderTop: "1px solid #ccc",
         }}
       >
-        <div>合计：￥{checkoutData.total}</div>
+        <div>
+          合计：￥
+          {totalPrice}
+        </div>
         {/* 需要依次读取每个商品的价格来写 */}
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button onClick={handleSubmitOrder}>提交订单</Button>
