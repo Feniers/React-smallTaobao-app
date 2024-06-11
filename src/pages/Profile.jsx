@@ -20,32 +20,32 @@ const items = [
   {
     key: 1,
     label: "地址管理",
-    path: "/404",
     icon: <EnvironmentOutlined style={{ color: "#CB573C" }}/>,
+    path: "/empty",
   },
   {
     key: 2,
     label: "我的足迹",
-    path: "/404",
     icon: <EyeOutlined style={{ color: "#CB573C" }}/>,
+    path: "/empty",
   },
   {
     key: 3,
     label: "我的关注",
-    path: "/404",
     icon: <LikeOutlined style={{ color: "#CB573C" }}/>,
+    path: "/empty",
   },
   {
     key: 4,
     label: "我的收藏",
-    path: "/404",
     icon: <HeartOutlined style={{ color: "#CB573C" }}/>,
+    path: "/empty",
   },
   {
     key: 5,
     label: "我的优惠券",
-    path: "/404",
     icon: <AccountBookOutlined style={{ color: "#CB573C" }}/>,
+    path: "/empty",
   },
   {
     key: 6,
