@@ -18,7 +18,7 @@ function OrderPage() {
       return orderList;
     }
     const orderState = parseInt(param.state);
-    return orderList.filter((order) => order.state === orderState);
+    return orderList.filter((order) => order.status === orderState);
   };
 
   const showOrder = filterOrder();
@@ -35,39 +35,43 @@ function OrderPage() {
           itemLayout="vertical"
           bordered={true}
           dataSource={showOrder}
-          renderItem={(item) => (
-            <List.Item classNames="order-item">
-              <List.Item.Meta title={`订单号：${item.id}`} />
-              {item.goods.map((good) => {
-                const product = goodService.getGoodById(good.id);
-                return (
-                  <div className="order-good">
-                    <Image
-                      src={product.img}
-                      className="order-good-img"
-                      width={350}
-                    />
-                    <div className="order-good-info">
-                      <div>{product.name}</div>
-                      <div className="order-price">
-                        单价：
-                        <Price price={product.price} />
+          renderItem={(item) => {
+            let finalPrice = 0;
+            return (
+              <List.Item classNames="order-item">
+                <List.Item.Meta title={`订单号：${item.id}`} />
+                {item.goods.map((good) => {
+                  const product = goodService.getGoodById(good.id);
+                  finalPrice += product.price * good.quantity;
+                  return (
+                    <div className="order-good">
+                      <Image
+                        src={product.img}
+                        className="order-good-img"
+                        width={350}
+                      />
+                      <div className="order-good-info">
+                        <div>{product.name}</div>
+                        <div className="order-price">
+                          单价：
+                          <Price price={product.price} />
+                        </div>
+                        <div>数量: {good.quantity}</div>
                       </div>
-                      <div>数量: {good.quantity}</div>
                     </div>
+                  );
+                })}
+                <div className="order-info">
+                  <div>创建时间：{item.createTime}</div>
+                  <div>折扣：{item.discount}</div>
+                  <div className="order-price">
+                    总价：
+                    <Price price={finalPrice - item.discount} />{" "}
                   </div>
-                );
-              })}
-              <div className="order-info">
-                <div>创建时间：{item.createTime}</div>
-                <div>折扣：{item.discount}</div>
-                <div className="order-price">
-                  总价：
-                  <Price price={item.price} />{" "}
                 </div>
-              </div>
-            </List.Item>
-          )}
+              </List.Item>
+            );
+          }}
         />
       </div>
     </div>
