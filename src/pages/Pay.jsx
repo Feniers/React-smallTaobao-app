@@ -8,8 +8,10 @@ const Pay = () => {
   const [value, setValue] = useState(1);
   const navigate = useNavigate();
   const { id } = useParams();
-  const { order: orderService } = useContext(ServiceContext);
+  const { order: orderService,user:userService } = useContext(ServiceContext);
   const order = orderService.getOrderById(parseInt(id));
+  const checkoutDataString = localStorage.getItem("checkoutData");
+  const checkoutData = JSON.parse(checkoutDataString);
 
   return (
     <div>
@@ -97,7 +99,9 @@ const Pay = () => {
                         marginTop: "20px",
                     }}
                     onClick={() => {
+                        
                         orderService.payOrder(id, value);
+                        userService.deleteCart(checkoutData.selectedProducts)
                         console.log(value)
                         navigate(`/PaySuccess/${order.id}`);
                     }}
