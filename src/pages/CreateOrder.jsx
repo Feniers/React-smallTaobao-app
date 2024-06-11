@@ -18,9 +18,10 @@ const CreateOrder = () => {
   const checkoutDataString = localStorage.getItem("checkoutData");
   const checkoutData = JSON.parse(checkoutDataString);
 
-  const goodList = checkoutData.selectedProducts.map((good) =>
-    goodService.getGoodById(good.id)
-  );
+  const goodList = checkoutData.selectedProducts.map((good) => {
+    const product = goodService.getGoodById(good.id);
+    return { ...product, quantity: good.quantity };
+  });
 
   const [addr, setAddr] = useState(user.addr[0]);
 
@@ -127,6 +128,7 @@ const CreateOrder = () => {
                   style={{ width: "30px", height: "30px", marginRight: "15px" }}
                 />
                 <span style={{ fontSize: "20px" }}>{good.name}</span>
+                <span style={{ fontSize: "20px" }}>{good.quantity}</span>
               </div>
               <div>{good.price}</div>
             </div>
@@ -207,7 +209,7 @@ const CreateOrder = () => {
           </div>
           {/* 需要依次读取每个商品的价格来写 */}
           <div style={{display: "flex", justifyContent: "flex-end"}}>
-              <Button onClick={handleSubmitOrder}>提交订单</Button>
+              <Button style={{ backgroundColor: "#CB573C",color:"white" }}onClick={handleSubmitOrder}>提交订单</Button>
           </div>
       </div>
     </div>

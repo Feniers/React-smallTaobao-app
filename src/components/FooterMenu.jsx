@@ -12,23 +12,23 @@ import { ServiceContext } from "../contexts/ServiceContext";
 const items = [
   {
     key: "home",
-    icon: <HomeOutlined />,
-    label: <Link to="/home">首页</Link>,
+    icon: <HomeOutlined style={{ color: "white" }}/>,
+    label: <Link to="/home" style={{ color: "white" }}>首页</Link>,
   },
   {
     key: "categories",
-    icon: <AppstoreOutlined />,
-    label: <Link to="/categories">分类</Link>,
+    icon: <AppstoreOutlined style={{ color: "white" }}/>,
+    label: <Link to="/categories" style={{ color: "white" }}>分类</Link>,
   },
   {
     key: "cart",
-    icon: <ShoppingCartOutlined />,
-    label: <Link to="/cart">购物车</Link>,
+    icon: <ShoppingCartOutlined style={{ color: "white" }}/>,
+    label: <Link to="/cart" style={{ color: "white" }}>购物车</Link>,
   },
   {
     key: "profile",
-    icon: <UserOutlined />,
-    label: <Link to="/profile">我的</Link>,
+    icon: <UserOutlined style={{ color: "white" }}/>,
+    label: <Link to="/profile" style={{ color: "white" }}>我的</Link>,
   },
 ];
 
@@ -62,6 +62,7 @@ const FooterMenu = () => {
         display: "flex",
         justifyContent: "space-around",
         alignItems: "center",
+        backgroundColor:"#CB573C"
       }}
     ></Menu>
   );
