@@ -77,6 +77,17 @@ class UserService {
     return this.currentUser ? this.currentUser.cart : [];
   }
 
+  // 在购物车中添加商品
+  addCart(product) {
+    this.currentUser.cart.push(product)
+    this._setData();
+  }
+
+  deleteCart(goods) {
+    this.currentUser.cart = this.currentUser.cart.filter(item => !goods.some(good => good.id === item.id));
+    this._setData();
+  }
+
   /**
    * 传入的cart会完全覆盖原来的cart
    * @param {*} cart
