@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import { Carousel, Button, Divider, Card } from "antd";
+import { Carousel, Button, Divider, Card,message } from "antd";
 import {
     LeftOutlined,
     HomeOutlined,
     ShoppingCartOutlined,
     HeartTwoTone,
     RightOutlined,
-    CheckOutlined,
     SafetyCertificateOutlined,
 } from "@ant-design/icons";
 import "../css/detail.css";
@@ -22,10 +21,15 @@ const contentStyle = {
   borderRadius: "10px 10px 0 0",
 };
 
+message.config({
+  top: '50vh',
+  right: '50px',
+});
+
 const ProductDetail = () => {
   // 用来写方法和定义变量的地方
   const { id } = useParams();
-  const { good: goodService } = useContext(ServiceContext);
+  const { good: goodService,user:userService } = useContext(ServiceContext);
   const good = goodService.getGoodById(parseInt(id));
 
   const likeHandler = () => {
@@ -33,6 +37,11 @@ const ProductDetail = () => {
   };
 
   const addCart = () => {
+    userService.addCart({
+      id: good.id,
+      amount: 1
+    })
+    message.success({ content: '已加入购物车', style: { color: 'red' } });
     console.log("addCart");
   };
 
@@ -70,12 +79,13 @@ const ProductDetail = () => {
 
   return (
     <div
-      className="page"
+      // className="page"
       style={{
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
         color: "#000",
+        
       }}
     >
       {/* 顶部栏 */}
@@ -90,7 +100,8 @@ const ProductDetail = () => {
           borderBottom: "1px solid #ccc",
           color: "#000",
           width: "100%",
-          
+          backgroundColor:"#fff",
+          zIndex:"10000"
         }}
       >
         <LeftOutlined
@@ -206,6 +217,7 @@ const ProductDetail = () => {
             style={{ cursor: "pointer" }}
           />
         </div>
+        <Divider style={{ borderTop: "1px solid #f0f0f0" }} />
       </Card>
 
       {/* 底边栏 */}
