@@ -207,7 +207,7 @@ const CreateOrder = () => {
           </div>
           {/* 需要依次读取每个商品的价格来写 */}
           <div style={{display: "flex", justifyContent: "flex-end"}}>
-              <Button onClick={handleSubmitOrder}>提交订单</Button>
+              <Button style={{ backgroundColor: "#CB573C",color:"white" }}onClick={handleSubmitOrder}>提交订单</Button>
           </div>
       </div>
     </div>

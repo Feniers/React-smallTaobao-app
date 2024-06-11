@@ -92,7 +92,7 @@ const Pay = () => {
                         width: "350px",
                         height: "50px",
                         fontSize: "20px",
-                        backgroundColor: "#F94167",
+                        backgroundColor: "#CB573C",
                         color: "#fff",
                         marginTop: "20px",
                     }}

@@ -42,11 +42,12 @@ const OrderDetail = () => {
           marginTop: "40px",
           height: "100px",
           alignItems: "center",
-          backgroundColor: "#F94167",
+          backgroundColor: "#CB573C",
+            color:"white",
           fontSize: "2.5em"
         }}
       >
-        <DropboxOutlined style={{ marginLeft: "10px",}} />
+        <DropboxOutlined style={{ marginLeft: "10px",color:"white",marginRight:20}} />
         等待发货
       </div>
       <Card style={{

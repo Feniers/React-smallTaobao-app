@@ -21,37 +21,37 @@ const items = [
     key: 1,
     label: "地址管理",
     path: "/404",
-    icon: <EnvironmentOutlined />,
+    icon: <EnvironmentOutlined style={{ color: "#CB573C" }}/>,
   },
   {
     key: 2,
     label: "我的足迹",
     path: "/404",
-    icon: <EyeOutlined />,
+    icon: <EyeOutlined style={{ color: "#CB573C" }}/>,
   },
   {
     key: 3,
     label: "我的关注",
     path: "/404",
-    icon: <LikeOutlined />,
+    icon: <LikeOutlined style={{ color: "#CB573C" }}/>,
   },
   {
     key: 4,
     label: "我的收藏",
     path: "/404",
-    icon: <HeartOutlined />,
+    icon: <HeartOutlined style={{ color: "#CB573C" }}/>,
   },
   {
     key: 5,
     label: "我的优惠券",
     path: "/404",
-    icon: <AccountBookOutlined />,
+    icon: <AccountBookOutlined style={{ color: "#CB573C" }}/>,
   },
   {
     key: 6,
     label: "我的评价",
     path: "/404",
-    icon: <CommentOutlined />,
+    icon: <CommentOutlined style={{ color: "#CB573C" }}/>,
   },
 ];
 
@@ -60,25 +60,25 @@ const orderItems = [
     key: 1,
     label: "全部订单",
     path: "/order",
-    icon: <AccountBookOutlined />,
+    icon: <AccountBookOutlined style={{ color: "#CB573C" }}/>,
   },
   {
     key: 2,
     label: "待付款",
     path: "/order/0",
-    icon: <MoneyCollectOutlined />,
+    icon: <MoneyCollectOutlined style={{ color: "#CB573C" }}/>,
   },
   {
     key: 3,
     label: "待收货",
     path: "/order/2",
-    icon: <ShoppingOutlined />,
+    icon: <ShoppingOutlined style={{ color: "#CB573C" }}/>,
   },
   {
     key: 4,
     label: "退款/售后",
     path: "/order/4",
-    icon: <HistoryOutlined />,
+    icon: <HistoryOutlined style={{ color: "#CB573C" }}/>,
   },
 ];
 

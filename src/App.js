@@ -23,6 +23,10 @@ const defaultUserList = [
     cart: [
       { id: 1, amount: 2 },
       { id: 2, amount: 1 },
+      { id: 3, amount: 1 },
+      { id: 4, amount: 1 },
+      { id: 6, amount: 1 },
+      { id: 5, amount: 1 },
     ],
     coupon: 3,
     avatar: "https://s3.bmp.ovh/imgs/2024/06/10/e871ee9896a2ca2c.jpg",
@@ -41,6 +45,8 @@ const defaultUserList = [
     cart: [
       { id: 1, amount: 2 },
       { id: 2, amount: 1 },
+      { id: 3, amount: 1 },
+      { id: 4, amount: 1 },
     ],
     coupon: 2,
     avatar: "https://s3.bmp.ovh/imgs/2024/06/10/ab7f159d0da00106.jpg",

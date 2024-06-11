@@ -34,7 +34,7 @@ const PaySuccess = () => {
         }}
       >
         <CheckCircleFilled
-          style={{ fontSize: "80px", color: "#F94167", marginTop: "50px" }}
+          style={{ fontSize: "80px", color: "#CB573C", marginTop: "50px" }}
         />
         <h2>支付成功</h2>
         <div style={{ marginTop: "50px" }}>
@@ -43,7 +43,7 @@ const PaySuccess = () => {
               width: "350px",
               height: "50px",
               fontSize: "20px",
-              backgroundColor: "#F94167",
+              backgroundColor: "#CB573C",
               color: "#fff",
             }}
             onClick={() => {

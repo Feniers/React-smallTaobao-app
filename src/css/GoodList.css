@@ -1,6 +1,7 @@
 .goods-header {
-    background: linear-gradient(to bottom right, rgb(255, 21, 76), rgb(253, 149, 12));
+    background: #CB573C;
 
+    color: #f8f9fa;
     height: 50px;
 }
 

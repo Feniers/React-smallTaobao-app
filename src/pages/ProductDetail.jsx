@@ -90,7 +90,7 @@ const ProductDetail = () => {
           borderBottom: "1px solid #ccc",
           color: "#000",
           width: "100%",
-          
+
         }}
       >
         <LeftOutlined
@@ -163,11 +163,11 @@ const ProductDetail = () => {
       <Card  style={{ width: "90%", margin: "0 auto",boxShadow:"0 4px 8px rgba(0, 0, 0, 0.3)"  }} >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginLeft: "5px" }}>
-            销量：{good.sales}
+            销量：<span style={{ color: "red", fontSize: "2em" }}>{good.sales}</span>
           </div>
-          <div style={{ color: "rgba(0, 0, 0, 0.5)" }}>库存：{good.store}</div>
+          <div style={{ color: "rgba(0, 0, 0, 0.5)" }}>库存：<span style={{ color: "red", fontSize: "2em" }}>{good.store}</span></div>
           <div style={{ color: "rgba(0, 0, 0, 0.5)", marginRight: "10px" }}>
-            浏览量：22356
+            浏览量：<span style={{ color: "red", fontSize: "2em" }}>{good.sales*29}</span>
           </div>
         </div>
       </Card>
