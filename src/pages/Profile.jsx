@@ -20,31 +20,31 @@ const items = [
   {
     key: 1,
     label: "地址管理",
-    path: "/404",
+    path: "/empty",
     icon: <EnvironmentOutlined />,
   },
   {
     key: 2,
     label: "我的足迹",
-    path: "/404",
+    path: "/empty",
     icon: <EyeOutlined />,
   },
   {
     key: 3,
     label: "我的关注",
-    path: "/404",
+    path: "/empty",
     icon: <LikeOutlined />,
   },
   {
     key: 4,
     label: "我的收藏",
-    path: "/404",
+    path: "/empty",
     icon: <HeartOutlined />,
   },
   {
     key: 5,
     label: "我的优惠券",
-    path: "/404",
+    path: "/empty",
     icon: <AccountBookOutlined />,
   },
   {
