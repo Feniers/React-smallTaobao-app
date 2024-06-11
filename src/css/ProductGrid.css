@@ -33,6 +33,7 @@
     /* 图片顶部圆角，与卡片一致 */
 }
 
+
 .product-card-list {
     background: white;
     margin-bottom: 10px;
@@ -51,11 +52,19 @@
 
 .product-card-list img {
     max-width: 50%;
-    width: 50%;
+    /* width: 50%; */
     max-height: 100%;
     /* 图片宽度为卡片宽度的100% */
     border-radius: 5px 0 0 5px;
     /* 图片左侧圆角 */
+}
+
+.product-info-grid {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-info {

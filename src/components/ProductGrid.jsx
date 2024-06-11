@@ -19,7 +19,7 @@ const ProductGrid = ({ products, showDetail = false }) => {
     >
       {products.map((product) => {
         if (!showDetail) {
-          console.log("grid: ", showDetail);
+          // console.log("grid: ", showDetail);
           return (
             <div
               className="product-card"
@@ -30,7 +30,7 @@ const ProductGrid = ({ products, showDetail = false }) => {
               }}
             >
               <img src={product.img} alt={product.name} />
-              <div className="product-info">
+              <div className="product-info-grid">
                 <h3>{product.name}</h3>
                 <div className="product-info-bottom">
                   <Price price={product.price} />
@@ -40,7 +40,7 @@ const ProductGrid = ({ products, showDetail = false }) => {
             </div>
           );
         } else {
-          console.log("list: ", showDetail);
+          // console.log("list: ", showDetail);
           return (
             <div
               className="product-card-list"

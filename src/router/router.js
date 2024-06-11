@@ -13,6 +13,7 @@ import CreateOrder from "../pages/CreateOrder";
 import GoodList from "../pages/GoodList";
 import ErrorPage from "../pages/ErrorPage";
 import OrderPage from "../pages/OrderPage";
+import EmptyPage from "../pages/EmptyPage";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,7 @@ const router = createBrowserRouter([
       },
     ],
   }, //路径参数商品分类
+  { path: "/empty", element: <EmptyPage /> },
   { path: "/404", element: <ErrorPage /> },
   { path: "*", element: <Navigate to="/404" /> },
 ]);
