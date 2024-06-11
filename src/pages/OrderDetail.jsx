@@ -10,7 +10,10 @@ const OrderDetail = () => {
   const { order: orderService, good: goodService } = useContext(ServiceContext);
   const order = orderService.getOrderById(parseInt(id));
 
-  const goodList = order.goods.map((good) => goodService.getGoodById(good.id));
+  const goodList = order.goods.map((good) => {
+    const product = goodService.getGoodById(good.id);
+    return { ...product, quantity: good.quantity };
+  });
 
   return (
     <div>
@@ -76,6 +79,7 @@ const OrderDetail = () => {
                 <span style={{ fontSize: "20px" }}>{good.name}</span>
               </div>
               <div>{good.price}</div>
+              <div>{good.quantity}</div>
             </div>
             {index !== goodList.length - 1 && (
               <Divider style={{ borderTop: "1px solid #f0f0f0" }} />

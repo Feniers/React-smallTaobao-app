@@ -79,12 +79,22 @@ class UserService {
 
   // 在购物车中添加商品
   addCart(product) {
-    this.currentUser.cart.push(product)
+    const existingProduct = this.currentUser.cart.find(
+      (item) => item.id === product.id
+    );
+
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      this.currentUser.cart.push({ ...product, quantity: 1 });
+    }
     this._setData();
   }
 
   deleteCart(goods) {
-    this.currentUser.cart = this.currentUser.cart.filter(item => !goods.some(good => good.id === item.id));
+    this.currentUser.cart = this.currentUser.cart.filter(
+      (item) => !goods.some((good) => good.id === item.id)
+    );
     this._setData();
   }
 
