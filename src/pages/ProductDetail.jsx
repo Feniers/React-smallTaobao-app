@@ -7,12 +7,6 @@ import {
   HeartTwoTone,
   RightOutlined,
   SafetyCertificateOutlined,
-  LeftOutlined,
-  HomeOutlined,
-  ShoppingCartOutlined,
-  HeartTwoTone,
-  RightOutlined,
-  SafetyCertificateOutlined,
 } from "@ant-design/icons";
 import "../css/detail.css";
 import { useNavigate, useParams } from "react-router-dom";
