@@ -6,7 +6,6 @@ import {
     ShoppingCartOutlined,
     HeartTwoTone,
     RightOutlined,
-    CheckOutlined,
     SafetyCertificateOutlined,
 } from "@ant-design/icons";
 import "../css/detail.css";

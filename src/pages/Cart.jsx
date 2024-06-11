@@ -22,12 +22,6 @@ function Cart() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // 假设你已经有了一个包含购物车商品 ID 和数量的数组
-    // const cart = [
-    //     { id: 1, amount: 2 },
-    //     { id: 2, amount: 1 },
-    //     { id: 3, amount: 1 }
-    // ];
 
     // 获取详细商品信息并初始化状态
     const loadProducts = cart
@@ -45,14 +39,9 @@ function Cart() {
       .filter((product) => product !== null); // 过滤掉任何未找到的商品
 
     setProducts(loadProducts); // 设置到状态中
-  }, []); // 依赖数组为空，仅在组件加载时执行
+  },  [goodService, cart]); // 依赖数组为空，仅在组件加载时执行
 
-  //   // 假设这是从某处获取的商品数据
-  // const [products, setProducts] = useState([
-  //     { id: 1, title: '商品1', description: '商品1描述', price:100,checked: false, quantity: 1 },
-  //     { id: 2, title: '商品2', description: '商品2描述', price:190,checked: false, quantity: 1 },
-  //     { id: 3, title: '商品3', description: '商品3描述', price:329,checked: false, quantity: 1 }
-  // ]);
+
   const [selectAll, setSelectAll] = useState(false);
   const [totalAccount, setTotalAccount] = useState(0);
   const [totalDiscount, setTotalDiscount] = useState(0);
