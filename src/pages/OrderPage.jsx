@@ -7,7 +7,7 @@ import "../css/OrderPage.css";
 import { LeftOutlined } from "@ant-design/icons";
 import Price from "../components/Price";
 
-function OrderPage({ state }) {
+function OrderPage() {
   const { order: orderService, good: goodService } = useContext(ServiceContext);
   const param = useParams();
 

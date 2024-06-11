@@ -8,12 +8,13 @@ import {
   BarsOutlined,
   LeftOutlined,
 } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function GoodList() {
   const { good: goodService } = React.useContext(ServiceContext);
 
   const param = useParams();
+  const navigate = useNavigate();
 
   const [showDetail, setShowDetail] = React.useState(false);
 
@@ -33,7 +34,11 @@ function GoodList() {
   return (
     <div className="goods-page">
       <div className="goods-header header">
-        <Button ghost="true" icon={<LeftOutlined />} href="/home"></Button>
+        <Button
+          ghost="true"
+          icon={<LeftOutlined />}
+          onClick={() => navigate(-1)}
+        ></Button>
         <h1>商品列表</h1>
         <Button
           ghost="true"
